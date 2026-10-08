@@ -1,0 +1,2179 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="description" content="สร้างการ์ดประกาศขายบ้าน ที่ดิน คอนโด สวยระดับมืออาชีพ ภายใน 3 นาที ใช้ฟรี ไม่จำกัดภาพ ไม่มีลายน้ำ ไม่ต้องสมัครสมาชิก">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 100 100%27><text y=%27.9em%27 font-size=%2790%27>🏡</text></svg>">
+<title>FastPost — ระบบสร้างการ์ดประกาศอสังหาฯ มืออาชีพ</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Kanit:wght@300;400;500;600;700&family=Sarabun:wght@300;400;500;600;700&family=Prompt:wght@300;400;500;600;700&family=Mitr:wght@300;400;500;600&family=IBM+Plex+Sans+Thai:wght@300;400;500;600;700&family=Noto+Sans+Thai:wght@300;400;500;600;700&family=Bai+Jamjuree:wght@300;400;500;600;700&family=Chakra+Petch:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<script src="https://accounts.google.com/gsi/client" async defer></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/qrcode-generator/1.4.4/qrcode.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin=""/>
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+<style>
+:root{--bd:#E3E6EA;--bg:#F5F6F8;--tx:#15181C;--mu:#6B7480;--ac:#2563EB;--ok:#16A34A;--er:#DC2626}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'IBM Plex Sans Thai',sans-serif;background:var(--bg);color:var(--tx);font-size:14px}
+.topbar{height:60px;background:#fff;border-bottom:1px solid var(--bd);display:flex;align-items:center;justify-content:space-between;padding:0 20px;position:sticky;top:0;z-index:100}
+.brandlogo{font-weight:700;font-size:18px;cursor:pointer;display:flex;align-items:center;gap:8px}
+.brandlogo small{font-weight:400;color:var(--mu);font-size:11px;display:block;line-height:1}
+.top-menu{display:flex;align-items:center;gap:12px}
+.tabs{display:flex;gap:4px;flex-wrap:wrap}
+.tab{padding:7px 14px;border-radius:8px;border:1px solid var(--bd);background:#fff;cursor:pointer;font-family:inherit;font-size:13px}
+.tab.on{background:var(--tx);color:#fff;border-color:var(--tx)}
+.wrap{display:grid;grid-template-columns:300px 1fr 300px;gap:14px;padding:14px;align-items:start;max-width:1600px;margin:0 auto}
+.col{background:#fff;border:1px solid var(--bd);border-radius:12px;padding:14px}
+.col.mid{background:#EDEFF2;display:flex;flex-direction:column;align-items:center;gap:12px;position:sticky;top:70px}
+h4{font-size:11px;letter-spacing:.6px;text-transform:uppercase;color:var(--mu);margin:14px 0 7px;font-weight:600}
+h4:first-child{margin-top:0}
+label{font-size:11.5px;color:var(--mu);display:block;margin:8px 0 3px}
+input,select,textarea{width:100%;border:1px solid var(--bd);border-radius:8px;padding:8px 9px;font-family:inherit;font-size:13px;outline:0;background:#fff;color:var(--tx)}
+input:focus,select:focus,textarea:focus{border-color:var(--ac);box-shadow:0 0 0 3px rgba(37,99,235,.13)}
+textarea{resize:vertical;min-height:58px}
+input[type=color]{padding:2px;height:34px;cursor:pointer}
+.g2{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.g3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:6px}
+.btn{width:100%;padding:10px;border-radius:9px;border:1.5px solid var(--bd);background:#fff;font-family:inherit;font-size:13px;font-weight:600;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:6px}
+.btn:hover{background:#F7F8FA}
+.btn.pri{background:var(--tx);color:#fff;border-color:var(--tx)}
+.btn.pri:hover{background:#000}
+.btn.rnd{background:linear-gradient(135deg,#2563EB,#7C3AED);color:#fff;border:0}
+.btn.sm{padding:6px 8px;font-size:12px;font-weight:500}
+.chips{display:flex;flex-wrap:wrap;gap:6px}
+.chip{padding:6px 12px;border:1px solid var(--bd);border-radius:20px;font-size:12px;cursor:pointer;background:#fff;font-family:inherit}
+.chip.on{background:var(--tx);color:#fff;border-color:var(--tx)}
+.tgl{display:flex;align-items:center;justify-content:space-between;padding:5px 0;border-bottom:1px solid #F1F2F4}
+.tgl span{font-size:12.5px}
+.sw{width:36px;height:20px;border-radius:99px;background:#D3D7DD;position:relative;cursor:pointer;flex:none}
+.sw::after{content:'';position:absolute;top:2px;left:2px;width:16px;height:16px;border-radius:50%;background:#fff;transition:.15s}
+.sw.on{background:var(--ok)}
+.sw.on::after{left:18px}
+#holder{margin:0 auto;position:relative;overflow:hidden;box-shadow:0 6px 28px rgba(0,0,0,.16);border-radius:4px;max-width:100%}
+#stage{transform-origin:top left;position:relative;overflow:hidden}
+.meta{font-size:11px;color:var(--mu);text-align:center;line-height:1.6}
+.thumbs{display:grid;grid-template-columns:repeat(4,1fr);gap:6px;margin-top:8px}
+.thumbs>div{aspect-ratio:1;border-radius:7px;background:#EDEFF2 center/cover;position:relative;border:1px solid var(--bd)}
+.thumbs>div b{position:absolute;top:2px;right:2px;width:17px;height:17px;border-radius:50%;background:rgba(0,0,0,.6);color:#fff;font-size:10px;display:grid;place-items:center;cursor:pointer}
+.hint{background:#F0F5FF;border:1px solid #D6E2FF;border-radius:8px;padding:9px 10px;font-size:11px;color:#1E40AF;line-height:1.55}
+.hint ul{margin:4px 0 0 15px}
+.drop{border:1.5px dashed var(--bd);border-radius:9px;padding:14px;text-align:center;color:var(--mu);font-size:12.5px;cursor:pointer}
+.drop:hover{border-color:var(--ac);color:var(--ac)}
+.plist{display:flex;flex-direction:column;gap:6px}
+.pitem{border:1px solid var(--bd);border-radius:9px;padding:8px 10px;display:flex;justify-content:space-between;align-items:center;gap:6px}
+.pitem.def{border-color:var(--ok);background:#F2FBF5}
+.pitem b{font-size:12.5px;font-weight:600}
+.pitem small{font-size:10px;color:var(--mu);display:block}
+.pact{display:flex;gap:3px}
+.pact button{border:1px solid var(--bd);background:#fff;border-radius:6px;width:26px;height:26px;cursor:pointer;font-size:11px}
+.toast{position:fixed;bottom:20px;left:50%;transform:translateX(-50%) translateY(80px);background:#15181C;color:#fff;padding:11px 20px;border-radius:99px;font-size:13px;font-weight:600;transition:.25s;z-index:99}
+.toast.on{transform:translateX(-50%) translateY(0)}
+.qa{font-size:11.5px;line-height:1.7}
+.qa div{display:flex;gap:6px}
+.qa i{font-style:normal;color:var(--ok);font-weight:700;flex:none}
+.page{display:none}.page.on{display:block}
+#mapPicker{width:100%;height:260px;border-radius:8px;border:1px solid var(--bd);margin-top:6px;z-index:1;position:relative}
+
+/* Landing Page Styles */
+.hero-section{max-width:900px;margin:30px auto;padding:20px;text-align:center}
+.hero-section h1{font-size:36px;font-weight:700;margin-bottom:12px;color:var(--tx)}
+.hero-section p{font-size:15px;color:var(--mu);margin-bottom:20px;line-height:1.6}
+.video-container{width:100%;aspect-ratio:16/9;background:#15181C;border-radius:16px;overflow:hidden;box-shadow:0 12px 36px rgba(0,0,0,.15);margin:24px 0;display:flex;align-items:center;justify-content:center;color:#fff;position:relative}
+.features-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:30px;text-align:left}
+.feature-card{background:#fff;border:1px solid var(--bd);border-radius:12px;padding:18px}
+.feature-card h3{font-size:15px;margin-bottom:6px;font-weight:600}
+.feature-card p{font-size:12.5px;color:var(--mu)}
+
+/* Billing Page Styles */
+.pricing-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:20px;max-width:800px;margin:30px auto}
+.price-card{background:#fff;border:1.5px solid var(--bd);border-radius:16px;padding:24px;text-align:left;position:relative;display:flex;flex-direction:column}
+.price-card.pop{border-color:var(--ac);box-shadow:0 8px 24px rgba(37,99,235,.12)}
+.price-card.pop::before{content:'แนะนำคุ้มสุด';position:absolute;top:-12px;right:20px;background:var(--ac);color:#fff;font-size:11px;padding:3px 10px;border-radius:99px;font-weight:600}
+.price-card h3{font-size:20px;margin-bottom:6px}
+.price-card .price{font-size:32px;font-weight:700;color:var(--tx);margin:12px 0}
+.price-card .price span{font-size:14px;font-weight:400;color:var(--mu)}
+.price-card ul{list-style:none;margin:16px 0 24px;flex:1}
+.price-card ul li{font-size:13.5px;color:var(--mu);margin-bottom:8px;display:flex;align-items:center;gap:6px}
+.price-card ul li::before{content:'✓';color:var(--ok);font-weight:700}
+
+/* Free quota */
+.quota-box{border:1px solid var(--bd);border-radius:10px;padding:9px 11px;margin-bottom:10px;font-size:12px;line-height:1.55;background:#F7F8FA}
+.quota-box b{font-weight:600}
+.quota-box.low{background:#FFF8EB;border-color:#F5D9A0}
+.quota-box.out{background:#FEF2F2;border-color:#F5C2C2}
+.quota-box.pro{background:#F2FBF5;border-color:#BFE6CC}
+.quota-box a{color:var(--ac);cursor:pointer;font-weight:600;text-decoration:underline}
+.quota-dots{display:flex;gap:4px;margin-top:6px}
+.quota-dots i{flex:1;height:5px;border-radius:99px;background:#D3D7DD}
+.quota-dots i.on{background:var(--ok)}
+.quota-box.low .quota-dots i.on{background:#D97706}
+/* Modal Styles */
+.modal-overlay{position:fixed;inset:0;background:rgba(0,0,0,.6);backdrop-filter:blur(4px);display:none;align-items:center;justify-content:center;z-index:1000}
+.modal-overlay.on{display:flex}
+.modal-box{background:#fff;border-radius:20px;width:100%;max-width:400px;padding:30px 24px;box-shadow:0 14px 40px rgba(0,0,0,.2);position:relative;text-align:center}
+.modal-close{position:absolute;top:16px;right:16px;background:none;border:0;font-size:18px;cursor:pointer;color:var(--mu)}
+.social-login-btn{width:100%;padding:12px 16px;border-radius:99px;border:1.5px solid var(--bd);background:#fff;font-family:inherit;font-size:13.5px;font-weight:600;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:10px;margin-bottom:10px;transition:.15s}
+.social-login-btn:hover{background:#F7F8FA}
+
+.legal{max-width:760px;margin:0 auto;line-height:1.85;font-size:13.5px}
+.legal h2{font-size:22px;margin-bottom:4px}
+.legal h3{font-size:15px;margin:20px 0 4px}
+.legal p,.legal li{color:#2b3036}
+.legal ul,.legal ol{margin:4px 0 4px 20px}
+.legal .upd{color:var(--mu);font-size:12px;margin-bottom:12px}
+.legal .note{background:#FFF8E6;border:1px solid #F3DFA2;border-radius:8px;padding:8px 10px;font-size:12px;margin:10px 0}
+.site-footer a{color:var(--mu);text-decoration:underline;cursor:pointer;margin:0 8px}
+.consent{font-size:11.5px;color:var(--mu);line-height:1.6;margin-top:14px}
+.consent a{color:var(--ac);cursor:pointer;text-decoration:underline}
+#gBtn{display:flex;justify-content:center;margin-bottom:10px;min-height:44px}
+.steps-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin:24px 0;text-align:left}
+.step-card{background:#fff;border:1px solid var(--bd);border-radius:12px;padding:16px}
+.step-card b{display:block;font-size:14px;margin-bottom:4px}
+.step-card span{font-size:12.5px;color:var(--mu);line-height:1.6}
+.site-footer{text-align:center;color:var(--mu);font-size:12px;padding:24px 16px 40px;line-height:1.8}
+.draggable-img{touch-action:none;user-select:none;-webkit-user-select:none}
+.tabs{overflow-x:auto;flex-wrap:nowrap;scrollbar-width:none}
+.tabs::-webkit-scrollbar{display:none}
+.tab{white-space:nowrap;flex:none}
+@media (max-width:1000px){
+  .wrap{grid-template-columns:1fr;max-width:640px}
+  .col.mid{position:static;order:-1}
+}
+@media (max-width:720px){
+  .topbar{height:auto;flex-direction:column;align-items:stretch;gap:8px;padding:10px 12px;position:static}
+  .top-menu{flex-direction:column;align-items:stretch;gap:8px}
+  .top-menu #authBtn{align-self:flex-end}
+  .hero-section{margin:16px auto;padding:14px}
+  .hero-section h1{font-size:26px}
+  .features-grid,.steps-grid,.pricing-grid{grid-template-columns:1fr}
+  .wrap{padding:10px}
+  .toast{max-width:90vw;text-align:center;white-space:normal;border-radius:16px}
+  .modal-box{margin:0 12px}
+}
+
+/* ===== Editor: แท็บ + แถบดาวน์โหลดติดพรีวิว ===== */
+:root{--top:60px;--stick:60px;--pvh:0px}
+[hidden]{display:none!important}
+.wrap.ed{grid-template-columns:minmax(0,1fr) 420px;max-width:1080px}
+.col.panel{padding:0;scroll-margin-top:70px}
+.ptabs{display:flex;position:sticky;top:var(--stick);z-index:15;background:#fff;border-bottom:1px solid var(--bd);border-radius:12px 12px 0 0}
+.ptab{flex:1;min-height:46px;padding:0 8px;border:0;border-bottom:3px solid transparent;background:none;font:inherit;font-size:14px;font-weight:600;color:var(--mu);cursor:pointer}
+.ptab:hover{color:var(--tx)}
+.ptab.on{color:var(--tx);border-bottom-color:var(--tx)}
+.pane{display:none;padding:14px}
+.pane.on{display:block}
+.pane-head{display:flex;align-items:center;justify-content:space-between;gap:8px;margin-bottom:2px}
+.pane-head h4{margin:0}
+.linkbtn{border:0;background:none;color:var(--ac);font:inherit;font-size:12.5px;font-weight:600;cursor:pointer;padding:6px 2px;min-height:32px}
+.linkbtn.warn{color:var(--er)}
+label.sub{margin-top:0}
+.fhint{font-size:12px;color:var(--mu);margin-top:4px;min-height:16px;line-height:1.5}
+.tips{margin-top:12px;border:1px solid #D6E2FF;background:#F0F5FF;border-radius:8px;font-size:12.5px;color:#1E40AF}
+.tips summary{padding:11px 12px;cursor:pointer;font-weight:600}
+.tips ol{margin:0;padding:0 12px 10px 32px;line-height:1.7}
+.next{margin-top:18px}
+.row2{display:flex;gap:8px;margin-bottom:12px}
+.pv-box{position:relative;display:flex;flex-direction:column;align-items:center;gap:6px;width:100%}
+.meta:empty{display:none}
+.dock{width:100%;max-width:480px}
+.dock .quota-box{margin-bottom:8px}
+.dock-btns{display:grid;grid-template-columns:2fr 1fr;gap:8px}
+.dock-btns .btn{min-height:46px}
+.pv-zoom{display:none;position:absolute;right:6px;bottom:6px;width:40px;height:40px;border-radius:50%;border:0;background:rgba(21,24,28,.82);color:#fff;cursor:pointer;align-items:center;justify-content:center}
+.bnav{display:none;position:fixed;left:0;right:0;bottom:0;z-index:90;background:#fff;border-top:1px solid var(--bd);padding-bottom:env(safe-area-inset-bottom,0px);grid-template-columns:repeat(5,1fr)}
+.bn{position:relative;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3px;min-height:56px;border:0;background:none;font:inherit;font-size:11.5px;color:var(--mu);cursor:pointer}
+.bn svg{width:22px;height:22px;stroke:currentColor;fill:none;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+.bn.on{color:var(--tx);font-weight:600}
+.bn.on::before{content:'';position:absolute;top:0;left:28%;right:28%;height:3px;border-radius:0 0 3px 3px;background:var(--tx)}
+.pvfull{background:rgba(10,12,16,.9)}
+#pvFullBox{position:relative;overflow:hidden;border-radius:4px;box-shadow:0 10px 40px rgba(0,0,0,.5)}
+.pvfull-close{position:fixed;top:max(12px,env(safe-area-inset-top,0px));right:12px;width:44px;height:44px;border-radius:50%;border:0;background:rgba(255,255,255,.95);font-size:18px;cursor:pointer;z-index:2}
+.ptab:focus-visible,.bn:focus-visible,.linkbtn:focus-visible,.dock .btn:focus-visible,.pv-zoom:focus-visible,.tips summary:focus-visible,.drop:focus-visible,.pvfull-close:focus-visible{outline:2px solid var(--ac);outline-offset:-2px}
+
+@media (max-width:1000px){
+  :root{--stick:calc(var(--top) + var(--pvh))}
+  .wrap.ed{grid-template-columns:minmax(0,1fr);max-width:640px;row-gap:10px}
+  .wrap.ed .col.mid{position:sticky;top:var(--top);order:-1;z-index:20;flex-direction:row;align-items:center;gap:12px;padding:10px;box-shadow:0 8px 16px -10px rgba(0,0,0,.35)}
+  .col.mid .pv-box{width:auto;flex:none}
+  .dock{flex:1;min-width:0}
+  .dock-btns{grid-template-columns:1fr}
+  .pv-zoom{display:flex}
+  .col.panel{scroll-margin-top:calc(var(--top) + var(--pvh))}
+}
+@media (max-width:1000px) and (max-height:520px){
+  .wrap.ed .col.mid{position:static}
+}
+@media (max-width:720px){
+  :root{--top:0px}
+  .topbar{flex-direction:row;align-items:center;justify-content:space-between;gap:8px;padding:8px 12px;min-height:52px}
+  .top-menu{flex-direction:row;align-items:center;gap:8px}
+  .top-menu .tabs{display:none}
+  .top-menu #authBtn{align-self:auto}
+  .bnav{display:grid}
+  body{padding-bottom:calc(64px + env(safe-area-inset-bottom,0px))}
+  .toast{bottom:calc(76px + env(safe-area-inset-bottom,0px));transform:translateX(-50%) translateY(240px)}
+  input,select,textarea{font-size:16px}
+}
+
+/* ===== โหมดใช้ฟรี + หน้าสนับสนุน ===== */
+.quota-box.free{background:#F0FAF4;border:1px solid #BFE6CC;color:#14532D;font-size:12.5px;line-height:1.55;padding:9px 11px}
+.quota-box.free a{display:block;margin-top:3px;font-weight:600;cursor:pointer;color:inherit;text-decoration:underline}
+button.chip{font:inherit}
+.donate{text-align:center}
+.donate h2{font-size:22px;margin-bottom:6px}
+.don-lead{font-size:13.5px;color:var(--mu);line-height:1.7;margin-bottom:6px}
+.donate .chips{justify-content:center;margin:6px 0 10px}
+.donate .chip{min-height:44px;min-width:56px;padding:0 16px;font-size:15px;font-weight:600}
+#donCustomWrap{text-align:left;margin-bottom:10px}
+.don-qr{background:#F7F8FA;border:1px solid var(--bd);border-radius:12px;padding:14px;margin:10px 0}
+.don-label{font-size:13.5px;font-weight:600;margin-bottom:8px}
+.don-frame{width:220px;height:220px;max-width:100%;margin:0 auto;background:#fff;border:1px solid var(--bd);border-radius:8px;overflow:hidden;display:flex;align-items:center;justify-content:center}
+.don-frame img{width:100%;height:100%;object-fit:contain}
+.don-err{font-size:12.5px;color:var(--er);padding:10px}
+.don-payee{font-size:12px;color:var(--mu);margin-top:8px}
+.don-how{margin-bottom:14px;text-align:center}
+.donate .btn{margin-top:4px}
+
+/* ===== กล่องโต้ตอบของเว็บเอง + สถานะกำลังสร้างภาพ + แชร์หลังดาวน์โหลด ===== */
+.btn:disabled{opacity:.6;cursor:not-allowed}
+.btn.loading::before{content:'';width:14px;height:14px;border:2px solid currentColor;border-right-color:transparent;border-radius:50%;display:inline-block;animation:fpspin .7s linear infinite}
+@keyframes fpspin{to{transform:rotate(360deg)}}
+@media (prefers-reduced-motion:reduce){.btn.loading::before{animation-duration:2.4s}}
+a.btn{text-decoration:none;color:inherit}
+.dlg-box{max-width:360px;padding:24px 20px 18px}
+.dlg-title{font-weight:700;font-size:17px;margin-bottom:6px}
+.dlg-msg{font-size:13.5px;color:var(--mu);line-height:1.65;margin-bottom:14px;white-space:pre-line}
+.dlg-msg:empty{display:none}
+#dlgInput{margin-bottom:14px;text-align:left}
+.dlg-actions{display:flex;gap:8px}
+.dlg-actions .btn{min-height:44px}
+.btn.danger{background:var(--er);border-color:var(--er);color:#fff}
+.btn.danger:hover{background:#B91C1C}
+.sheet-box{max-width:460px;max-height:92vh;overflow-y:auto;text-align:left;padding:22px 20px 16px}
+.sheet-title{font-weight:700;font-size:18px;margin-bottom:4px}
+.sheet-sub{font-size:13px;color:var(--mu);line-height:1.6;margin-bottom:10px}
+#capText{min-height:150px;line-height:1.6}
+.sheet-btns{display:grid;gap:8px;margin-top:12px}
+.sheet-btns .btn{min-height:46px}
+.sheet-foot{margin-top:12px;font-size:12.5px;color:var(--mu);text-align:center}
+.sheet-foot a{cursor:pointer;text-decoration:underline;color:var(--mu);margin:0 8px}
+@media (max-width:720px){
+  #shareSheet{align-items:flex-end}
+  #shareSheet .sheet-box{margin:0;max-width:none;border-radius:20px 20px 0 0;padding-bottom:calc(16px + env(safe-area-inset-bottom,0px))}
+}
+
+/* ===== แกลเลอรีการ์ดตัวอย่างหน้าแรก ===== */
+.samples-wrap{margin:34px 0 6px}
+.samples-title{font-size:22px;font-weight:700;margin-bottom:4px}
+.samples-sub{font-size:13.5px;color:var(--mu);margin-bottom:14px}
+.samples-note{font-size:12px;color:var(--mu);margin:2px 0 0}
+.samples{display:flex;gap:14px;overflow-x:auto;scroll-snap-type:x mandatory;padding:6px 4px 14px;margin:0 -4px;scrollbar-width:thin;-webkit-overflow-scrolling:touch}
+.sample{flex:0 0 min(58vw,230px);scroll-snap-align:center;text-align:left;cursor:pointer;border-radius:12px}
+.sample-frame{display:block;position:relative;width:100%;aspect-ratio:4/5;border-radius:10px;overflow:hidden;background:#E8EAED;box-shadow:0 6px 18px -8px rgba(0,0,0,.35);transition:transform .15s}
+.sample:hover .sample-frame{transform:translateY(-3px)}
+.sample-inner{position:absolute;left:0;top:0;transform-origin:top left}
+.sample-cap{display:block;font-size:13px;font-weight:600;margin-top:9px;line-height:1.4}
+.sample-cap small{display:block;font-weight:400;color:var(--mu);font-size:12px}
+.sample:focus-visible{outline:2px solid var(--ac);outline-offset:3px}
+@media (min-width:860px){.samples{display:grid;grid-template-columns:repeat(4,1fr);overflow:visible;padding-bottom:6px}.sample{flex:none}}
+@media (prefers-reduced-motion:reduce){.sample-frame{transition:none}}
+</style>
+</head>
+<body>
+
+<div class="topbar">
+  <div class="brandlogo" onclick="goPage('landing',document.querySelector('[data-page=landing]'))">
+    <span>FastPost</span><small>อสังหาฯ 3 นาที</small>
+  </div>
+  <div class="top-menu">
+    <div class="tabs">
+      <button class="tab on" data-page="landing" onclick="goPage('landing',this)">หน้าแรก</button>
+      <button class="tab" data-page="editor" onclick="goPage('editor',this)">สร้างการ์ด</button>
+      <button class="tab" data-page="brand" onclick="goPage('brand',this)">ข้อมูลติดต่อ</button>
+      <button class="tab" data-page="donate" onclick="goPage('donate',this)">☕ สนับสนุน</button>
+      <button class="tab" data-page="preset" onclick="goPage('preset',this)">แบบที่บันทึก</button>
+    </div>
+    <button class="btn sm pri" id="authBtn" onclick="authBtnClick()" style="width:auto;padding:7px 16px">เข้าสู่ระบบ</button>
+  </div>
+</div>
+
+<!-- ============ LANDING PAGE (หน้าแรก) ============ -->
+<div class="page on" id="p_landing">
+<div class="hero-section">
+  <h1>สร้างการ์ดประกาศอสังหาฯ สวยหรู<br>จบได้ภายใน 3 นาที</h1>
+  <p>เครื่องมือสร้างโพสต์และป้ายประกาศขายบ้าน ที่ดิน คอนโด สำหรับนายหน้ามืออาชีพ ใช้ฟรี ไม่จำกัดภาพ ไม่มีลายน้ำ ใช้ได้ทุกเทมเพลต ไม่ต้องสมัครสมาชิก</p>
+  
+  <div style="display:flex;justify-content:center;gap:10px;max-width:300px;margin:0 auto">
+    <button class="btn pri" onclick="goPage('editor', document.querySelector('[data-page=editor]'))">🚀 เริ่มสร้างการ์ด ฟรี</button>
+  </div>
+
+  <div class="samples-wrap">
+    <h2 class="samples-title">การ์ดแบบนี้ ทำเสร็จใน 3 นาที</h2>
+    <p class="samples-sub">ตัวอย่างจากแม่แบบจริงของ FastPost แตะการ์ดที่ชอบเพื่อเริ่มจากแม่แบบนั้น</p>
+    <div class="samples" id="sampleRow" aria-label="ตัวอย่างการ์ด"></div>
+    <p class="samples-note" id="sampleNote">ภาพประกอบเป็นภาพวาดตัวอย่าง ไม่ใช่ทรัพย์จริง</p>
+  </div>
+
+  <div class="steps-grid">
+    <div class="step-card"><b>1. กรอกข้อมูลทรัพย์</b><span>ใส่ราคา ทำเล เนื้อที่ และอัปโหลดรูปได้สูงสุด 4 รูป</span></div>
+    <div class="step-card"><b>2. เลือกดีไซน์</b><span>เลือกเทมเพลต ชุดสี ฟอนต์ หรือกด "สุ่มดีไซน์ใหม่"</span></div>
+    <div class="step-card"><b>3. ดาวน์โหลดไปโพสต์</b><span>ได้ไฟล์ PNG/JPG ขนาดพร้อมโพสต์ Facebook, IG, LINE</span></div>
+  </div>
+
+  <div class="features-grid">
+    <div class="feature-card">
+      <h3>🎨 ทุกเทมเพลต ใช้ได้ตั้งแต่ภาพแรก</h3>
+      <p>ไม่ล็อกดีไซน์ ดาวน์โหลดภาพสะอาด ไม่มีลายน้ำ ไม่จำกัดจำนวน</p>
+    </div>
+    <div class="feature-card">
+      <h3>📍 ปักหมุดแผนที่ + QR</h3>
+      <p>สร้าง QR Code สำหรับสแกนแอดไลน์ และลิงก์ Google Maps นำทางได้ทันที</p>
+    </div>
+    <div class="feature-card">
+      <h3>☕ ฟรีจริง สนับสนุนได้ตามกำลัง</h3>
+      <p>ไม่มีแพ็กเกจรายเดือน ถ้าเครื่องมือนี้ช่วยงานคุณได้ จะช่วยสนับสนุนค่าเซิร์ฟเวอร์ผ่านพร้อมเพย์ก็ได้ <a onclick="goPage('donate')" style="color:var(--ac);font-weight:600;cursor:pointer">สนับสนุน</a>
+    </div>
+  </div>
+</div>
+</div>
+
+<!-- ============ DONATE PAGE (สนับสนุน) ============ -->
+<div class="page" id="p_donate">
+<div class="wrap" style="grid-template-columns:1fr;max-width:520px">
+<div class="col donate">
+  <h2>สนับสนุน FastPost</h2>
+  <p class="don-lead">FastPost ใช้ได้ฟรี ไม่จำกัดจำนวนภาพ และไม่มีลายน้ำ การสนับสนุนเป็นความสมัครใจทั้งหมด เงินที่ได้ใช้เป็น<span id="donNote"></span></p>
+  <h4>เลือกจำนวนเงิน (บาท)</h4>
+  <div class="chips" id="donChips" role="group" aria-label="เลือกจำนวนเงินสนับสนุน">
+    <button type="button" class="chip" data-amt="20" aria-pressed="false" onclick="pickDonate(20)">20</button>
+    <button type="button" class="chip on" data-amt="50" aria-pressed="true" onclick="pickDonate(50)">50</button>
+    <button type="button" class="chip" data-amt="100" aria-pressed="false" onclick="pickDonate(100)">100</button>
+    <button type="button" class="chip" data-amt="200" aria-pressed="false" onclick="pickDonate(200)">200</button>
+    <button type="button" class="chip" data-amt="other" aria-pressed="false" onclick="pickDonate('other')">ระบุเอง</button>
+  </div>
+  <div id="donCustomWrap" hidden>
+    <label for="donCustom">จำนวนเงิน (บาท)</label>
+    <input id="donCustom" type="text" inputmode="numeric" autocomplete="off" placeholder="เช่น 150" oninput="this.value=this.value.replace(/[^\d]/g,'').slice(0,7);drawDonateQr()">
+  </div>
+  <div class="don-qr">
+    <div class="don-label" id="donLabel" aria-live="polite"></div>
+    <div id="donQrFrame" class="don-frame"><img id="donQrImg" alt="PromptPay QR สำหรับสนับสนุน"></div>
+    <div id="donQrError" class="don-err" hidden>สร้าง QR ไม่สำเร็จ — ตรวจสอบอินเทอร์เน็ตแล้วรีเฟรชหน้านี้</div>
+    <div class="don-payee" id="donPayee"></div>
+  </div>
+  <p class="fhint don-how">เปิดแอปธนาคาร เลือกสแกน QR แล้วยืนยันการโอน ขอบคุณที่ช่วยให้ FastPost ไปต่อได้ 🙏</p>
+  <button type="button" class="btn" onclick="goPage('editor',document.querySelector('[data-page=editor]'))">กลับไปสร้างการ์ด</button>
+</div>
+</div>
+</div>
+
+<!-- ============ EDITOR (สร้างการ์ด) ============ -->
+<div class="page" id="p_editor">
+<div class="wrap ed">
+
+  <!-- พรีวิว + ปุ่มดาวน์โหลด (ติดอยู่กับพรีวิวเสมอ) -->
+  <div class="col mid">
+    <div class="pv-box">
+      <div id="holder"><div id="stage"></div></div>
+      <div class="meta" id="stageMeta"></div>
+      <button type="button" class="pv-zoom" onclick="openPreviewFull()" aria-label="ดูตัวอย่างเต็มจอ">
+        <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="15 3 21 3 21 9"/><polyline points="9 21 3 21 3 15"/><line x1="21" y1="3" x2="14" y2="10"/><line x1="3" y1="21" x2="10" y2="14"/></svg>
+      </button>
+    </div>
+    <div class="dock">
+      <div class="quota-box" id="quotaBox"></div>
+      <div class="dock-btns">
+        <button type="button" class="btn pri" id="dlPng" data-fmt="png" data-label="ดาวน์โหลด PNG" onclick="doExport('png')">ดาวน์โหลด PNG</button>
+        <button type="button" class="btn" id="dlJpg" data-fmt="jpg" data-label="ดาวน์โหลด JPG" onclick="doExport('jpg')">ดาวน์โหลด JPG</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- แผงแก้ไข 3 แท็บ -->
+  <div class="col panel">
+    <div class="ptabs" role="tablist" aria-label="ส่วนแก้ไขการ์ด">
+      <button type="button" class="ptab on" role="tab" id="ptab_data" data-pane="data" aria-selected="true" aria-controls="pane_data">ข้อมูล</button>
+      <button type="button" class="ptab" role="tab" id="ptab_img" data-pane="img" aria-selected="false" aria-controls="pane_img" tabindex="-1">รูปภาพ<span id="ptabImgN"></span></button>
+      <button type="button" class="ptab" role="tab" id="ptab_design" data-pane="design" aria-selected="false" aria-controls="pane_design" tabindex="-1">ดีไซน์</button>
+    </div>
+
+    <!-- แท็บ 1: ข้อมูล -->
+    <div class="pane on" id="pane_data" role="tabpanel" aria-labelledby="ptab_data">
+      <div class="pane-head">
+        <h4>ข้อมูลอสังหาริมทรัพย์</h4>
+        <button type="button" class="linkbtn" id="clearBtn" onclick="clearSample(this)">ล้างทุกช่อง</button>
+      </div>
+      <label for="d_type">ประเภทประกาศ</label>
+      <select id="d_type"><option>ขายที่ดิน</option><option>ขายบ้าน</option><option>ขายคอนโด</option><option>ให้เช่า</option><option>อาคารพาณิชย์</option></select>
+      <label for="d_title">หัวข้อประกาศ</label>
+      <input id="d_title" value="ที่ดินแปลงสวย ติดถนนคอนกรีต" placeholder="เช่น บ้านเดี่ยว 2 ชั้น ใกล้ทางด่วน" autocomplete="off">
+      <label for="d_price">ราคารวม (บาท)</label>
+      <input id="d_price" type="text" inputmode="numeric" autocomplete="off" value="670,000" placeholder="เช่น 2,500,000">
+      <div class="fhint" id="priceHint" aria-live="polite"></div>
+      <label for="d_loc">ทำเลที่ตั้ง</label>
+      <input id="d_loc" value="ต.ลำตาเสา อ.วังน้อย จ.พระนครศรีอยุธยา" placeholder="ตำบล อำเภอ จังหวัด" autocomplete="off">
+
+      <div id="grp_land">
+        <label>เนื้อที่</label>
+        <div class="g3">
+          <div><label class="sub" for="d_rai">ไร่</label><input id="d_rai" type="number" inputmode="numeric" min="0" value="0"></div>
+          <div><label class="sub" for="d_ngan">งาน</label><input id="d_ngan" type="number" inputmode="numeric" min="0" value="2"></div>
+          <div><label class="sub" for="d_wa">ตร.ว.</label><input id="d_wa" type="number" inputmode="decimal" min="0" value="50"></div>
+        </div>
+      </div>
+
+      <div id="grp_house">
+        <div class="g3" style="margin-top:8px">
+          <div><label for="d_bed">ห้องนอน</label><input id="d_bed" type="number" inputmode="numeric" min="0" value="0"></div>
+          <div><label for="d_bath">ห้องน้ำ</label><input id="d_bath" type="number" inputmode="numeric" min="0" value="0"></div>
+          <div><label for="d_park">ที่จอดรถ</label><input id="d_park" type="number" inputmode="numeric" min="0" value="0"></div>
+        </div>
+        <label for="d_living" id="lb_living">พื้นที่ใช้สอย (ตร.ม.)</label>
+        <input id="d_living" type="number" inputmode="decimal" min="0" value="0">
+      </div>
+
+      <label for="d_desc">รายละเอียดเพิ่มเติม</label>
+      <textarea id="d_desc" placeholder="จุดเด่น เช่น ถมแล้ว น้ำไฟพร้อม เดินทางสะดวก">ถมแล้ว เข้าออกสะดวก ไฟฟ้าน้ำประปาพร้อม เหมาะปลูกบ้านหรือลงทุน</textarea>
+
+      <button type="button" class="btn next" onclick="openPane('img')">ถัดไป: เพิ่มรูปภาพ</button>
+    </div>
+
+    <!-- แท็บ 2: รูปภาพ -->
+    <div class="pane" id="pane_img" role="tabpanel" aria-labelledby="ptab_img">
+      <h4>รูปภาพประกอบ (สูงสุด 4 รูป)</h4>
+      <div class="drop" id="dropPic" role="button" tabindex="0" onclick="document.getElementById('pic').click()">อัปโหลดรูปภาพ</div>
+      <input id="pic" type="file" accept="image/*" multiple hidden>
+      <div class="thumbs" id="thumbs"></div>
+      <div class="fhint">ลากรูปบนการ์ดเพื่อเลื่อนตำแหน่งที่ต้องการแสดงได้</div>
+      <details class="tips">
+        <summary>แนะนำมุมกล้อง 4 รูป</summary>
+        <ol id="tipList"></ol>
+      </details>
+      <button type="button" class="btn next" onclick="openPane('design')">ถัดไป: เลือกดีไซน์</button>
+    </div>
+
+    <!-- แท็บ 3: ดีไซน์ -->
+    <div class="pane" id="pane_design" role="tabpanel" aria-labelledby="ptab_design">
+      <div class="row2">
+        <button class="btn rnd" style="flex:1" onclick="randomizeDesign()">✨ สุ่มดีไซน์ใหม่</button>
+        <button class="btn sm pri" style="flex:1" onclick="autoFitDesign()">⚡ จัดหน้าอัตโนมัติ</button>
+      </div>
+
+      <h4>รูปแบบการ์ด (Template)</h4>
+      <div class="chips" id="tplChips" style="margin-bottom:6px"></div>
+
+      <h4>การจัดวาง (Layout)</h4>
+      <select id="in_layout"></select>
+
+      <h4>ขนาดภาพ (Export Size)</h4>
+      <select id="in_size"></select>
+
+      <h4>ชุดสี (Color Palette)</h4>
+      <div class="chips" id="palChips" style="margin-bottom:8px"></div>
+      <div class="g2" style="margin-top:8px">
+        <div><label>สีหลัก (Primary)</label><input type="color" id="c_primary"></div>
+        <div><label>สีเด่น (Accent)</label><input type="color" id="c_accent"></div>
+        <div><label>สีพื้นหลัง (Bg)</label><input type="color" id="c_bg"></div>
+        <div><label>สีข้อความ (Text)</label><input type="color" id="c_text"></div>
+      </div>
+      <button class="btn sm" style="margin-top:6px" onclick="resetColors()">คืนค่าสีตามชุดสี</button>
+
+      <h4>รูปแบบตัวหนังสือ (Font)</h4>
+      <select id="in_font"></select>
+
+      <h4>ปรับแต่งดีไซน์</h4>
+      <label>ขนาดหัวข้อ <span id="lb_title"></span></label><input type="range" id="s_title" min="70" max="150" step="5">
+      <label>ขนาดราคา <span id="lb_price"></span></label><input type="range" id="s_price" min="70" max="170" step="5">
+      <label>ความเข้มพื้นหลังรูป <span id="lb_ov"></span></label><input type="range" id="s_ov" min="0" max="90" step="5">
+      <label>การจัดตำแหน่งข้อความ</label>
+      <div class="chips" id="alignChips"></div>
+      <div class="tgl" style="margin-top:10px"><span>กรอบเส้นรอบการ์ด</span><div class="sw" id="sw_border"></div></div>
+      <div class="tgl" style="margin-top:10px"><span>แสดงแผนที่ QR บนการ์ด</span><div class="sw on" id="sw_showMap"></div></div>
+
+      <button class="btn" style="margin-top:16px" onclick="goPage('preset',document.querySelector('[data-page=preset]'))">บันทึกดีไซน์นี้เก็บไว้</button>
+    </div>
+  </div>
+</div>
+</div>
+
+<!-- ============ CONTACT INFO (ข้อมูลติดต่อ) ============ -->
+<div class="page" id="p_brand">
+<div class="wrap" style="grid-template-columns:1fr;max-width:800px">
+  <div class="col">
+    <h4>ข้อมูลติดต่อผู้ประกาศ</h4>
+    <label>ชื่อผู้ติดต่อ</label><input id="b_agent" autocomplete="name" placeholder="คุณสมชาย (นายหน้า)">
+    <div class="g2">
+      <div><label>เบอร์โทรศัพท์</label><input id="b_phone" type="tel" inputmode="tel" autocomplete="tel" placeholder="***-***-****"></div>
+      <div><label>ไอดีไลน์ (LINE ID)</label><input id="b_line" autocomplete="off" autocapitalize="none" autocorrect="off" spellcheck="false" placeholder="@landdeal"></div>
+    </div>
+    
+    <div style="margin-top:10px">
+      <label>คิวอาร์โค้ดไลน์</label>
+      <div class="drop" onclick="document.getElementById('qrIn').click()" style="padding:10px;font-size:11px">อัปโหลด QR ไลน์</div>
+      <input id="qrIn" type="file" accept="image/*" hidden>
+      <div id="qrPrev" style="margin-top:6px"></div>
+    </div>
+
+    <h4 style="margin-top:16px">ปักหมุดตำแหน่ง (สร้าง QR ลิงก์ Google Maps)</h4>
+    <div class="tgl" style="margin-bottom:10px"><span>แสดงแผนที่ QR บนการ์ด</span><div class="sw on" id="sw_showMap2"></div></div>
+    <label>ค้นหาสถานที่ หรือคลิกปักหมุดบนแผนที่</label>
+    <div style="display:flex;gap:8px;margin-bottom:6px">
+      <input id="mapSearchBox" placeholder="เช่น อยุธยา, บางปะอิน...">
+      <button class="btn sm pri" style="width:110px;flex:none" onclick="searchMapLocation()">ค้นหา</button>
+    </div>
+    <div style="position:relative;">
+      <div id="mapPicker"></div>
+      <button type="button" onclick="locateUser()" style="position:absolute;bottom:14px;right:14px;z-index:999;background:#fff;border:1px solid #ccc;padding:6px 10px;border-radius:6px;cursor:pointer;font-size:12px;font-weight:600;box-shadow:0 2px 6px rgba(0,0,0,.2);display:flex;align-items:center;gap:4px;">📍 ตำแหน่งของฉัน</button>
+    </div>
+    <div style="font-size:11px;color:var(--ok);margin-top:4px">✓ แผนที่ดาวเทียม — QR นำทางจะแสดงบนการ์ดเมื่อปักหมุดแล้ว และเปิดสวิตช์ด้านบนไว้เท่านั้น</div>
+
+    <div class="g2" style="margin-top:14px">
+      <button class="btn pri" onclick="saveBrand()">บันทึกข้อมูลติดต่อ</button>
+      <button class="btn" onclick="clearBrand()">ล้างข้อมูล</button>
+    </div>
+    <div class="tgl" style="margin-top:10px"><span>ใช้ข้อมูลนี้เป็นค่าเริ่มต้นอัตโนมัติทุกการ์ด</span><div class="sw on" id="sw_brandDefault"></div></div>
+    
+    <h4 style="margin-top:20px">สถานะข้อมูลปัจจุบัน</h4>
+    <div id="brandStatus" class="qa"></div>
+  </div>
+</div>
+</div>
+
+<!-- ============ PRESET (แบบที่บันทึกไว้) ============ -->
+<div class="page" id="p_preset">
+<div class="wrap" style="grid-template-columns:1fr;max-width:800px">
+  <div class="col">
+    <h4>บันทึกรูปแบบดีไซน์ที่คุณชอบ</h4>
+    <label>ตั้งชื่อแบบนี้</label>
+    <div style="display:flex;gap:8px">
+      <input id="pr_name" placeholder="เช่น แบบบ้านหรู, แบบที่ดินด่วน">
+      <button class="btn pri" style="width:160px;flex:none" onclick="savePreset()">บันทึกแบบนี้</button>
+    </div>
+    <h4 style="margin-top:20px">รายการแบบที่คุณบันทึกไว้</h4>
+    <div class="plist" id="presetList"></div>
+  </div>
+</div>
+</div>
+
+<!-- ============ TERMS ============ -->
+<div class="page" id="p_terms">
+<div class="wrap" style="grid-template-columns:1fr;max-width:860px"><div class="col legal">
+  <h2>ข้อกำหนดการใช้งาน</h2>
+  <div class="upd">มีผลบังคับใช้ตั้งแต่ <span class="js-upd"></span></div>
+  <div class="note">เอกสารนี้เป็นร่างมาตรฐานสำหรับบริการลักษณะนี้ ควรให้ที่ปรึกษากฎหมายตรวจสอบก่อนใช้งานเชิงพาณิชย์</div>
+
+  <h3>1. ผู้ให้บริการและการยอมรับข้อกำหนด</h3>
+  <p>FastPost ("บริการ") ให้บริการโดย <span class="js-op"></span> ("ผู้ให้บริการ") การเข้าใช้งานเว็บไซต์ถือว่าคุณยอมรับข้อกำหนดนี้ หากไม่ยอมรับ โปรดหยุดใช้บริการ</p>
+
+  <h3>2. ลักษณะของบริการ</h3>
+  <p>FastPost เป็นเครื่องมือออกแบบและส่งออกรูปภาพการ์ดประกาศอสังหาริมทรัพย์ ผู้ให้บริการ<b>ไม่ใช่นายหน้า ไม่ได้ซื้อขายหรือเป็นตัวกลางในการซื้อขายทรัพย์สิน</b> และไม่ตรวจสอบหรือรับรองความถูกต้องของข้อมูลทรัพย์ที่ผู้ใช้กรอก</p>
+
+  <h3>3. บัญชีผู้ใช้</h3>
+<ul>
+<li>การใช้ฟีเจอร์สร้างการ์ดไม่ต้องเข้าสู่ระบบ ข้อมูลที่คุณกรอกถูกเก็บในเบราว์เซอร์ของคุณ หากล้างข้อมูลเบราว์เซอร์ ข้อมูลและแบบดีไซน์ที่บันทึกไว้อาจหายไป</li>
+<li>หากเว็บไซต์เปิดให้เข้าสู่ระบบด้วย Google/Facebook คุณต้องรักษาความปลอดภัยของบัญชีตนเอง และรับผิดชอบต่อกิจกรรมที่เกิดขึ้นภายใต้บัญชี</li>
+</ul>
+<h3>4. การใช้งานฟรีและการสนับสนุน</h3>
+<ul>
+<li><b>ใช้งานฟรี:</b> ใช้เทมเพลตและฟีเจอร์ได้ทั้งหมด ดาวน์โหลดภาพได้ไม่จำกัดจำนวนและไม่มีลายน้ำ โดยไม่ต้องชำระเงิน</li>
+<li><b>การสนับสนุน (โดเนท):</b> เป็นการให้โดยสมัครใจผ่านพร้อมเพย์ ไม่ใช่การซื้อสินค้าหรือบริการ และไม่ทำให้ได้สิทธิ์หรือฟีเจอร์เพิ่มเติม</li>
+<li>เมื่อโอนแล้ว ผู้ให้บริการไม่คืนเงิน เว้นแต่โอนผิดจำนวนหรือผิดบัญชีโดยพลาด ให้ติดต่อผู้ให้บริการทันทีพร้อมหลักฐาน</li>
+<li>ผู้ให้บริการอาจปรับเปลี่ยนรูปแบบการให้บริการหรือเงื่อนไขในอนาคต โดยแจ้งล่วงหน้าบนเว็บไซต์</li>
+</ul>
+<h3>5. เนื้อหาของผู้ใช้</h3>
+  <ul>
+    <li>ข้อความ รูปภาพ และข้อมูลติดต่อที่คุณใส่ในการ์ดเป็นความรับผิดชอบของคุณ คุณรับรองว่าคุณมีสิทธิ์ใช้เนื้อหานั้น และข้อมูลทรัพย์ (ราคา ขนาด ทำเล สภาพ) เป็นความจริงและไม่ทำให้ผู้อื่นเข้าใจผิด</li>
+    <li>เนื้อหาที่คุณกรอกถูกเก็บในเบราว์เซอร์ของคุณ ผู้ให้บริการไม่ได้รับสำเนาและไม่อ้างสิทธิ์ใด ๆ ในเนื้อหานั้น</li>
+    <li>คุณต้องปฏิบัติตามกฎหมายและกฎของแพลตฟอร์มที่นำการ์ดไปโพสต์ รวมถึงกฎหมายเกี่ยวกับการโฆษณาและการคุ้มครองผู้บริโภค</li>
+  </ul>
+
+  <h3>6. ข้อห้าม</h3>
+  <ul>
+    <li>ใช้บริการเพื่อหลอกลวง โฆษณาเท็จ หรือแอบอ้างเป็นเจ้าของทรัพย์/บุคคลอื่น</li>
+    <li>ใช้รูปภาพหรือข้อมูลที่ละเมิดลิขสิทธิ์หรือสิทธิส่วนบุคคลของผู้อื่น</li>
+    <li>แก้ไขโค้ดเพื่อให้บริการเสียหาย หรือโจมตี/รบกวนระบบ</li>
+  </ul>
+
+  <h3>7. ทรัพย์สินทางปัญญา</h3>
+  <p>ซอฟต์แวร์ เทมเพลต และการออกแบบของ FastPost เป็นของผู้ให้บริการ ภาพที่คุณส่งออกจากการ์ดของคุณ คุณนำไปใช้โพสต์ประกาศได้โดยอิสระ แต่ไม่มีสิทธิ์ทำซ้ำหรือจำหน่ายตัวเทมเพลตเอง</p>
+
+  <h3>8. การปฏิเสธและจำกัดความรับผิด</h3>
+  <p>บริการให้ "ตามสภาพ" ผู้ให้บริการไม่รับประกันว่าบริการจะไม่หยุดชะงักหรือปราศจากข้อผิดพลาด และไม่รับผิดชอบต่อความเสียหายทางอ้อม การสูญเสียกำไร หรือความเสียหายจากเนื้อหาที่ผู้ใช้สร้าง เนื่องจากบริการนี้ให้ใช้ฟรี ความรับผิดของผู้ให้บริการ (ถ้ามี) จึงจำกัดเท่าที่กฎหมายอนุญาต</p>
+
+  <h3>9. การระงับหรือยกเลิกบริการ</h3>
+  <p>ผู้ให้บริการอาจระงับหรือจำกัดการเข้าถึงบริการสำหรับผู้ที่ฝ่าฝืนข้อกำหนด และอาจแก้ไขหรือยกเลิกบริการได้ โดยจะพยายามแจ้งล่วงหน้าตามสมควร</p>
+
+  <h3>10. การแก้ไขข้อกำหนด</h3>
+  <p>ผู้ให้บริการอาจปรับปรุงข้อกำหนดเป็นครั้งคราว โดยแสดงวันที่มีผลบังคับใช้ล่าสุดไว้ที่หน้านี้ การใช้บริการต่อหลังการปรับปรุงถือว่าคุณยอมรับข้อกำหนดใหม่</p>
+
+  <h3>11. กฎหมายที่ใช้บังคับ</h3>
+  <p>ข้อกำหนดนี้อยู่ภายใต้กฎหมายแห่งราชอาณาจักรไทย</p>
+
+  <h3>12. ติดต่อ</h3>
+  <p>LINE: <span class="js-line"></span> · อีเมล: <span class="js-email"></span></p>
+</div></div>
+</div>
+
+<!-- ============ PRIVACY ============ -->
+<div class="page" id="p_privacy">
+<div class="wrap" style="grid-template-columns:1fr;max-width:860px"><div class="col legal">
+  <h2>นโยบายความเป็นส่วนตัว</h2>
+  <div class="upd">มีผลบังคับใช้ตั้งแต่ <span class="js-upd"></span> · จัดทำตามพระราชบัญญัติคุ้มครองข้อมูลส่วนบุคคล พ.ศ. 2562 (PDPA)</div>
+  <div class="note">เอกสารนี้เป็นร่างมาตรฐาน ควรให้ที่ปรึกษากฎหมายตรวจสอบก่อนใช้งานเชิงพาณิชย์</div>
+
+  <h3>1. ผู้ควบคุมข้อมูลส่วนบุคคล</h3>
+  <p><span class="js-op"></span> · LINE: <span class="js-line"></span> · อีเมล: <span class="js-email"></span></p>
+
+  <h3>2. ข้อมูลที่เก็บ</h3>
+  <p><b>ก) ข้อมูลที่อยู่ในเบราว์เซอร์ของคุณเท่านั้น</b> (localStorage ไม่ถูกส่งมาที่เซิร์ฟเวอร์ของเรา): ข้อมูลทรัพย์ รูปภาพ ชื่อ/เบอร์โทร/LINE ID ที่ใส่ในการ์ด รูป QR ไลน์ พิกัดที่ปักหมุด แบบดีไซน์ที่บันทึก และ QR พร้อมเพย์ที่อัปโหลด การล้างข้อมูลเบราว์เซอร์หรือปุ่ม "ล้างข้อมูล" จะลบข้อมูลเหล่านี้</p>
+  <p><b>ข) ข้อมูลบนเซิร์ฟเวอร์:</b> การสร้างและดาวน์โหลดการ์ดทำในเบราว์เซอร์ของคุณ เราไม่เก็บเนื้อหาการ์ดของคุณ หากเว็บไซต์เปิดให้เข้าสู่ระบบและคุณเลือกเข้าสู่ระบบ จะเก็บรหัสผู้ใช้และชื่อที่แสดงจาก Google/Facebook เท่านั้น เราไม่เก็บรหัสผ่านของคุณ การสนับสนุนผ่านพร้อมเพย์ทำผ่านแอปธนาคารของคุณโดยตรง เราไม่เก็บข้อมูลบัญชีธนาคารของคุณ (หากส่งสลิปมาทาง LINE จะอยู่ภายใต้นโยบายของ LINE)</p>
+
+  <h3>3. วัตถุประสงค์และฐานทางกฎหมาย</h3>
+  <ul>
+    <li>ให้บริการสร้างและส่งออกการ์ด (ประมวลผลในเบราว์เซอร์ของคุณ) — เพื่อปฏิบัติตามข้อกำหนดการใช้งาน</li>
+<li>ยืนยันตัวตนเมื่อคุณเลือกเข้าสู่ระบบ (ถ้าเปิดให้บริการ) — ตามความยินยอมของคุณ</li>
+<li>ตอบข้อซักถามและแก้ปัญหาการใช้งาน — ประโยชน์โดยชอบด้วยกฎหมาย/ตามคำร้องขอของคุณ</li>
+</ul>
+
+  <h3>4. บริการของบุคคลที่สามที่เกี่ยวข้อง</h3>
+  <ul>
+    <li><b>Google Fonts</b> — โหลดฟอนต์ (และ Google/Facebook เฉพาะเมื่อเว็บไซต์เปิดให้เข้าสู่ระบบและคุณเลือกใช้)</li>
+    <li><b>Esri</b> (แผนที่ดาวเทียม) และ <b>OpenStreetMap Nominatim</b> (ค้นหาสถานที่ — ข้อความที่คุณพิมพ์ค้นหาจะถูกส่งไปยังบริการนี้)</li>
+    <li><b>cdnjs / Cloudflare</b> — โหลดไลบรารี และเป็นที่ตั้งของระบบหลังบ้านของเรา</li>
+    <li>ปุ่ม "📍 ตำแหน่งของฉัน" ใช้ตำแหน่งจากเบราว์เซอร์ต่อเมื่อคุณอนุญาตเท่านั้น และตำแหน่งไม่ถูกส่งมาที่เซิร์ฟเวอร์ของเรา</li>
+  </ul>
+  <p>QR แผนที่บนการ์ดเป็นลิงก์ไปยัง Google Maps ตามพิกัดที่คุณปักหมุด ผู้ที่สแกนจะเห็นพิกัดนั้น โปรดปักหมุดเฉพาะตำแหน่งที่คุณต้องการเปิดเผย</p>
+
+  <h3>5. ระยะเวลาเก็บรักษา</h3>
+  <p>ข้อมูลบัญชีเข้าสู่ระบบ (ถ้ามี) เก็บไว้ตราบเท่าที่คุณยังใช้บริการ เว้นแต่กฎหมายกำหนดให้เก็บนานกว่านั้น หรือคุณขอให้ลบก่อน</p>
+
+  <h3>6. การเปิดเผยข้อมูล</h3>
+  <p>เราไม่ขายข้อมูลของคุณ และเปิดเผยเฉพาะผู้ให้บริการโครงสร้างพื้นฐานที่จำเป็น (ตามข้อ 4) หรือเมื่อกฎหมาย/หน่วยงานรัฐที่มีอำนาจกำหนด</p>
+
+  <h3>7. สิทธิของเจ้าของข้อมูล</h3>
+  <p>คุณมีสิทธิขอเข้าถึง ขอสำเนา แก้ไข ลบ ระงับการใช้ คัดค้าน หรือขอโอนย้ายข้อมูลส่วนบุคคลของคุณ และถอนความยินยอมได้ โดยติดต่อตามช่องทางด้านล่าง เรามีสิทธิ์ขอยืนยันตัวตนก่อนดำเนินการ และคุณมีสิทธิ์ร้องเรียนต่อสำนักงานคณะกรรมการคุ้มครองข้อมูลส่วนบุคคล</p>
+
+  <h3>8. ความปลอดภัย</h3>
+  <p>เราใช้การเชื่อมต่อแบบเข้ารหัส (HTTPS) และเก็บข้อมูลบนเซิร์ฟเวอร์เท่าที่จำเป็น อย่างไรก็ตามไม่มีระบบใดปลอดภัย 100% ข้อมูลที่เก็บในเบราว์เซอร์ขึ้นกับความปลอดภัยของอุปกรณ์ของคุณ โปรดไม่ใช้เครื่องสาธารณะเก็บข้อมูลติดต่อของคุณ</p>
+
+  <h3>9. ข้อมูลของบุคคลอื่นในการ์ด</h3>
+  <p>หากคุณใส่ชื่อ เบอร์โทร หรือรูปของบุคคลอื่น (เช่น เจ้าของทรัพย์) ลงในการ์ด คุณต้องได้รับความยินยอมจากบุคคลนั้นก่อน</p>
+
+  <h3>10. เด็ก</h3>
+  <p>บริการนี้ไม่ได้มุ่งหมายสำหรับผู้ที่อายุต่ำกว่า 18 ปี</p>
+
+  <h3>11. การเปลี่ยนแปลงนโยบาย</h3>
+  <p>เราจะแสดงวันที่มีผลบังคับใช้ล่าสุดไว้ที่หน้านี้เมื่อมีการปรับปรุง</p>
+
+  <h3>12. ติดต่อ</h3>
+  <p>LINE: <span class="js-line"></span> · อีเมล: <span class="js-email"></span></p>
+</div></div>
+</div>
+
+<!-- ============ AUTH MODAL (หน้าต่างเข้าสู่ระบบ) ============ -->
+<div class="modal-overlay" id="authModal">
+  <div class="modal-box">
+    <button class="modal-close" onclick="closeAuthModal()">✕</button>
+    <div style="font-weight:700;font-size:22px;margin-bottom:6px">FastPost</div>
+    <p style="font-size:13px;color:var(--mu);margin-bottom:20px">เข้าสู่ระบบ (ไม่บังคับ)</p>
+
+    <div id="gBtn"></div>
+    <button class="social-login-btn" id="fbBtn" onclick="fbLogin()">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="#1877F2"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+      เข้าสู่ระบบด้วย Facebook
+    </button>
+    <div id="authNotice" style="font-size:12px;color:var(--er);margin-top:6px"></div>
+    <div class="consent">การเข้าสู่ระบบถือว่าคุณยอมรับ <a onclick="closeAuthModal();goPage('terms')">ข้อกำหนดการใช้งาน</a> และ <a onclick="closeAuthModal();goPage('privacy')">นโยบายความเป็นส่วนตัว</a></div>
+  </div>
+</div>
+
+<!-- ============ CHECKOUT MODAL (ระบบกรอกรหัสปลดล็อก Pro) ============ -->
+<div class="modal-overlay" id="checkoutModal">
+  <div class="modal-box" style="max-width:420px;max-height:92vh;overflow-y:auto">
+    <button class="modal-close" onclick="closeCheckoutModal()">✕</button>
+    <div style="font-weight:700;font-size:20px;margin-bottom:4px">สมัครแพ็กเกจ Pro Agent</div>
+    <p style="font-size:13px;color:var(--tx);margin-bottom:10px;text-align:left"><b>1.</b> โอนเงิน <b>59.00 บาท</b> ผ่าน QR Code ด้านล่าง</p>
+    
+    <div style="background:#F7F8FA;border:1px solid var(--bd);border-radius:12px;padding:14px;text-align:center;margin-bottom:14px">
+      <div style="font-size:13px;font-weight:600;margin-bottom:6px" id="checkoutQrLabel">สแกน QR เพื่อโอนเงิน 59.-</div>
+      <div id="checkoutQrFrame" style="width:180px;height:220px;margin:0 auto;background:#fff;border:1px solid var(--bd);border-radius:8px;overflow:hidden;display:flex;align-items:center;justify-content:center;">
+        <img id="checkoutQrImg" alt="PromptPay QR" style="width:100%;height:100%;object-fit:contain;">
+      </div>
+      <div id="checkoutQrFallback" style="display:none;font-size:12.5px;line-height:1.7;color:var(--tx);padding:6px 4px">ขอ QR หรือเลขบัญชีโอนเงินได้ทาง LINE <b class="js-line"></b><br>กดปุ่ม "ส่งสลิปทาง LINE" ด้านล่างเพื่อเริ่มสมัครได้เลย</div>
+      <div style="font-size:11.5px;color:var(--tx);margin-top:6px;font-weight:600" id="checkoutAgentName">ชื่อบัญชี: นายธนวุฒิ ประไชโย</div>
+    </div>
+
+    <div style="text-align:left;margin-bottom:14px">
+      <p style="font-size:13px;margin-bottom:8px"><b>2.</b> ส่งสลิปทาง LINE เพื่อรับรหัสปลดล็อก</p>
+      <a id="lineSlipBtn" class="btn" href="#" target="_blank" rel="noopener" style="background:#06C755;border-color:#06C755;color:#fff;text-decoration:none">💬 ส่งสลิปทาง LINE</a>
+      <div style="font-size:11.5px;color:var(--mu);line-height:1.6;margin-top:6px">กดแล้วจะเปิดแชท LINE พร้อมข้อความที่พิมพ์ไว้ให้ แค่แนบสลิปแล้วกดส่ง จะได้รับรหัส<span class="js-reply"></span><br>ยังไม่ได้เป็นเพื่อน? <a id="lineAddLink" href="#" target="_blank" rel="noopener" style="color:var(--ac);font-weight:600">แอด LINE <span class="js-line"></span></a></div>
+    </div>
+
+    <div style="text-align:left">
+      <p style="font-size:13px;margin-bottom:6px"><b>3.</b> กรอกรหัสที่ได้รับ</p>
+      <div style="display:flex;gap:8px">
+        <input id="proCodeInput" placeholder="เช่น PRO-9999" style="text-transform:uppercase;font-weight:600;letter-spacing:1px">
+        <button class="btn pri" style="width:120px;flex:none" onclick="verifyProCode()">ปลดล็อก</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ============ QUOTA MODAL (ใช้สิทธิ์ฟรีครบแล้ว) ============ -->
+<div class="modal-overlay" id="quotaModal">
+  <div class="modal-box" style="max-width:400px">
+    <button class="modal-close" onclick="closeQuotaModal()">✕</button>
+    <div style="font-size:34px;margin-bottom:6px">🎉</div>
+    <div style="font-weight:700;font-size:19px;margin-bottom:6px">คุณใช้สิทธิ์ฟรีเดือนนี้ครบ <span class="js-quota-total"></span> ภาพแล้ว</div>
+    <p style="font-size:13px;color:var(--mu);line-height:1.6;margin-bottom:16px">ถ้าลงประกาศต่อเนื่อง สมัคร Pro 59 บาท/เดือน ดาวน์โหลดไม่มีลายน้ำได้ไม่จำกัด<br>สิทธิ์ฟรีจะรีเซ็ตอีกครั้งต้นเดือนหน้า</p>
+    <button class="btn pri" onclick="quotaUpgrade()" style="margin-bottom:8px">⭐ ลบลายน้ำ สมัคร Pro 59.-/เดือน</button>
+    <button class="btn" onclick="quotaDownloadWithWatermark()">ดาวน์โหลดแบบมีลายน้ำ</button>
+  </div>
+</div>
+
+<footer class="site-footer">© FastPost — เครื่องมือสร้างการ์ดประกาศอสังหาฯ<br>ข้อมูลและรูปภาพที่กรอกจะถูกเก็บในเบราว์เซอร์ของคุณเท่านั้น<br><a onclick="goPage('donate')">☕ สนับสนุน</a>·<a onclick="goPage('terms')">ข้อกำหนดการใช้งาน</a>·<a onclick="goPage('privacy')">นโยบายความเป็นส่วนตัว</a></footer>
+<nav class="bnav" aria-label="เมนูหลัก">
+  <button type="button" class="bn on" data-page="landing" onclick="goPage('landing')"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg><span>หน้าแรก</span></button>
+  <button type="button" class="bn" data-page="editor" onclick="goPage('editor')"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"/></svg><span>สร้างการ์ด</span></button>
+  <button type="button" class="bn" data-page="brand" onclick="goPage('brand')"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg><span>ข้อมูลติดต่อ</span></button>
+  <button type="button" class="bn" data-page="donate" onclick="goPage('donate')"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg><span>สนับสนุน</span></button>
+  <button type="button" class="bn" data-page="preset" onclick="goPage('preset')"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"/></svg><span>แบบที่บันทึก</span></button>
+</nav>
+
+<div class="modal-overlay pvfull" id="pvFull" role="dialog" aria-modal="true" aria-label="ตัวอย่างการ์ดเต็มจอ" onclick="if(event.target===this)closePreviewFull()">
+  <button type="button" class="pvfull-close" id="pvFullClose" onclick="closePreviewFull()" aria-label="ปิดตัวอย่าง">✕</button>
+  <div id="pvFullBox"></div>
+</div>
+
+<div class="modal-overlay" id="dlg" role="alertdialog" aria-modal="true" aria-labelledby="dlgTitle" aria-describedby="dlgMsg" onclick="if(event.target===this)dlgClose()">
+  <div class="modal-box dlg-box">
+    <div class="dlg-title" id="dlgTitle"></div>
+    <p class="dlg-msg" id="dlgMsg"></p>
+    <input id="dlgInput" type="text" hidden autocomplete="off" aria-labelledby="dlgTitle">
+    <div class="dlg-actions">
+      <button type="button" class="btn" id="dlgCancel">ยกเลิก</button>
+      <button type="button" class="btn pri" id="dlgOk">ตกลง</button>
+    </div>
+  </div>
+</div>
+
+<div class="modal-overlay" id="shareSheet" role="dialog" aria-modal="true" aria-labelledby="shTitle" onclick="if(event.target===this)closeShareSheet()">
+  <div class="modal-box sheet-box">
+    <button type="button" class="modal-close" onclick="closeShareSheet()" aria-label="ปิด">✕</button>
+    <div class="sheet-title" id="shTitle">✓ ดาวน์โหลดแล้ว</div>
+    <p class="sheet-sub">ไฟล์อยู่ในโฟลเดอร์ดาวน์โหลดของเครื่อง ขั้นต่อไปคัดลอกแคปชั่นแล้วนำไปโพสต์ได้เลย</p>
+    <label for="capText">แคปชั่นสำหรับโพสต์ (แก้ไขได้)</label>
+    <textarea id="capText" rows="8"></textarea>
+    <div class="sheet-btns">
+      <button type="button" class="btn pri" id="capCopyBtn" onclick="copyCaption()">คัดลอกแคปชั่น</button>
+      <button type="button" class="btn" id="shareNativeBtn" onclick="shareNative()" hidden>แชร์ภาพพร้อมแคปชั่น</button>
+      <a class="btn" id="shareLineBtn" href="#" target="_blank" rel="noopener">ส่งแคปชั่นทาง LINE</a>
+    </div>
+    <div class="sheet-foot"><a onclick="closeShareSheet();goPage('donate')">☕ ช่วยสนับสนุน</a><span aria-hidden="true">·</span><a onclick="noMoreSheet()">ไม่ต้องแสดงหน้าต่างนี้อีก</a></div>
+  </div>
+</div>
+
+<div class="toast" id="toast"></div>
+
+<script>
+const DS = {
+  sizes: {
+    's1x1'  : {name:'สี่เหลี่ยมจัตุรัส 1:1 (1080×1080 px)', w:1080, h:1080},
+    's4x5'  : {name:'แนวตั้ง 4:5 แนะนำสำหรับโพสต์ (1080×1350 px)', w:1080, h:1350},
+    's9x16' : {name:'เรื่องราว/สตอรี่ 9:16 (1080×1920 px)', w:1080, h:1920},
+    's16x9' : {name:'แนวนอน 16:9 (1200×675 px)', w:1200, h:675}
+  },
+  palettes: {
+    blackgold : {name:'ดำ & ทอง หรูหรา', primary:'#0E0E0E', secondary:'#2A2A2A', bg:'#0E0E0E', text:'#FFFFFF', accent:'#C9A227', price:'#E8C558', border:'#3A3A3A', dark:true},
+    whitegold : {name:'ขาว & ทอง พรีเมียม', primary:'#1A1A1A', secondary:'#F4EFE3', bg:'#FFFFFF', text:'#1A1A1A', accent:'#B8912F', price:'#9A7726', border:'#E6DFD0', dark:false},
+    navy      : {name:'น้ำเงินเข้ม โมเดิร์น', primary:'#0F2547', secondary:'#1B3A6B', bg:'#FFFFFF', text:'#0F2547', accent:'#2E6BD1', price:'#16428A', border:'#DCE4F0', dark:false},
+    forest    : {name:'เขียวป่า ธรรมชาติ', primary:'#12402C', secondary:'#1E6647', bg:'#FFFFFF', text:'#12402C', accent:'#2E9E5B', price:'#1F7A4D', border:'#D9EBE1', dark:false},
+    earth     : {name:'เอิร์ธโทน อบอุ่น', primary:'#4A3728', secondary:'#7A5C42', bg:'#FBF7F2', text:'#3A2B1F', accent:'#B4743C', price:'#8A5326', border:'#E8DDD0', dark:false},
+    lxgray    : {name:'เทาพรีเมียม เรียบหรู', primary:'#1F2225', secondary:'#3A4046', bg:'#F2F3F5', text:'#1F2225', accent:'#8A9199', price:'#2C3136', border:'#DCDEE2', dark:false},
+    soft      : {name:'ม่วงอ่อน พาสเทล', primary:'#2E2A33', secondary:'#6F6478', bg:'#FAF7FB', text:'#2E2A33', accent:'#A78BC4', price:'#6B4E8E', border:'#EADFF0', dark:false},
+    modblue   : {name:'ฟ้าโมเดิร์น สดใส', primary:'#0B1B2B', secondary:'#123553', bg:'#FFFFFF', text:'#0B1B2B', accent:'#0A84FF', price:'#0667CC', border:'#D9E6F2', dark:false},
+    beige     : {name:'เบจ ครีม ละมุน', primary:'#3B3228', secondary:'#6B5B4A', bg:'#F6F1E8', text:'#3B3228', accent:'#C58A47', price:'#8F5C1E', border:'#E5DACA', dark:false},
+    darkgreen : {name:'เขียวเข้ม ลักชูรี่', primary:'#0C1F16', secondary:'#12402C', bg:'#0C1F16', text:'#F2F7F4', accent:'#5BC98B', price:'#8FE3B3', border:'#22503A', dark:true},
+    rosewood  : {name:'กุหลาบแดง หรูหรา', primary:'#4A1525', secondary:'#7A223B', bg:'#FFF9FA', text:'#3D101C', accent:'#D9385F', price:'#B82348', border:'#F5D6DE', dark:false},
+    sunset    : {name:'ส้มอิฐ อบอุ่น', primary:'#5C2C16', secondary:'#8C4824', bg:'#FFFAF5', text:'#3B1C0E', accent:'#E66C2E', price:'#C25017', border:'#F7D8C6', dark:false},
+    teal      : {name:'เขียวเทอร์ควอยซ์', primary:'#0F3D3E', secondary:'#1B6061', bg:'#F2F9F9', text:'#0A292A', accent:'#14C38E', price:'#0F966C', border:'#D1ECEA', dark:false},
+    lavender  : {name:'ลาเวนเดอร์ พาสเทล', primary:'#3B2C50', secondary:'#5D457D', bg:'#F9F7FC', text:'#281D35', accent:'#8C52FF', price:'#7239E5', border:'#E4D9F5', dark:false},
+    slate     : {name:'สเลทเทา เรียบง่าย', primary:'#2C3E50', secondary:'#34495E', bg:'#ECF0F1', text:'#2C3E50', accent:'#2980B9', price:'#1F618D', border:'#BDC3C7', dark:false},
+    charcoal  : {name:'ชาร์โคล เข้มขรึม', primary:'#1E1E1E', secondary:'#333333', bg:'#121212', text:'#F5F5F5', accent:'#FFB703', price:'#FB8500', border:'#333333', dark:true}
+  },
+  fonts: {
+    kanit_sarabun : {name:'Kanit + Sarabun (มาตรฐาน)', heading:'Kanit', body:'Sarabun'},
+    prompt_sarabun: {name:'Prompt + Sarabun (โมเดิร์น)', heading:'Prompt', body:'Sarabun'},
+    mitr_plex     : {name:'Mitr + IBM Plex Thai (อบอุ่น)', heading:'Mitr', body:'IBM Plex Sans Thai'},
+    bai_noto      : {name:'Bai Jamjuree + Noto Thai (สะอาด)', heading:'Bai Jamjuree', body:'Noto Sans Thai'},
+    chakra_sarabun: {name:'Chakra Petch + Sarabun (เข้ม)', heading:'Chakra Petch', body:'Sarabun'},
+    plex_plex     : {name:'IBM Plex Thai เดี่ยว (มินิมอล)', heading:'IBM Plex Sans Thai', body:'IBM Plex Sans Thai'}
+  },
+  layouts: {
+    hero   : {name:'ภาพใหญ่ด้านบน + ข้อความล่าง'},
+    top    : {name:'ภาพบน + ข้อมูลเรียงลงมา'},
+    split  : {name:'แบ่งซ้าย-ขวา (ภาพซ้าย ข้อมูลขวา)'},
+    grid   : {name:'ตารางรูปภาพ (2-4 รูป)'},
+    price  : {name:'เน้นราคาเด่นสะดุดตา'}
+  },
+  templates: {
+    'modern-01': {name:'โมเดิร์นมาตรฐาน', layout:'top',   palette:'modblue',   font:'prompt_sarabun', style:{radius:16, pad:44, titleScale:100, priceScale:110, overlay:45, align:'left',   border:false}},
+    'bold-01':   {name:'จุดเด่นที่ดิน', layout:'price', palette:'forest',    font:'chakra_sarabun', style:{radius:20, pad:44, titleScale:105, priceScale:150, overlay:50, align:'center', border:false}},
+    'luxury-01': {name:'✨ คลาสสิกโปร', layout:'hero',  palette:'blackgold', font:'kanit_sarabun',  style:{radius:4,  pad:56, titleScale:105, priceScale:125, overlay:62, align:'center', border:true}},
+    'minimal-01':{name:'🌿 มินิมอลลักชู', layout:'hero', palette:'lxgray',    font:'plex_plex',      style:{radius:0,  pad:52, titleScale:95,  priceScale:100, overlay:35, align:'left',   border:false}},
+    'elegant-01':{name:'💎 สลิทพรีเมียม', layout:'split',palette:'whitegold', font:'mitr_plex',      style:{radius:10, pad:46, titleScale:95,  priceScale:105, overlay:30, align:'left',   border:true}},
+    'gridpro-01':{name:'🖼️ โฟโต้กริด', layout:'grid',  palette:'earth',     font:'prompt_sarabun', style:{radius:12, pad:40, titleScale:100, priceScale:110, overlay:40, align:'left',   border:false}},
+    'darkpro-01':{name:'👑 รอยัลดาร์ก', layout:'price', palette:'darkgreen', font:'kanit_sarabun',  style:{radius:16, pad:48, titleScale:110, priceScale:140, overlay:55, align:'center', border:true}}
+  },
+  aligns: [{k:'left',n:'ชิดซ้าย'},{k:'center',n:'กึ่งกลาง'}]
+};
+
+const LS = {cfg:'fastpost_cfg', data:'fastpost_data', brand:'fastpost_brand', imgs:'fastpost_imgs', imgPos:'fastpost_img_pos', presets:'fastpost_presets', user:'fastpost_user', plan:'fastpost_plan', planExp:'fastpost_plan_exp', session:'fastpost_session'};
+let CFG = null, IMGS = [], IMG_POS = [{x:50, y:50},{x:50, y:50},{x:50, y:50},{x:50, y:50}], BRAND = null, QRCODE = null, MAPLAT = 13.736717, MAPLNG = 100.523186, MAPZOOM = 13, MAPOBJ = null, MARKEROBJ = null, PRESETS = [], MAP_PINNED = false, CURRENT_USER = null, CURRENT_PLAN = 'free';
+
+function defaultCfg(id){
+  const t = DS.templates[id];
+  return {
+    templateId:id, layout:t.layout, palette:t.palette, font:t.font,
+    size:'s4x5', custom:{}, useBrand:true,
+    style:Object.assign({}, t.style)
+  };
+}
+const val = id => (document.getElementById(id)?.value ?? '');
+const baht = n => Number(n||0).toLocaleString('th-TH');
+const esc = s => String(s).replace(/[&<>"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+let SAMPLE_MODE = false, DATA_OVERRIDE = null, BRAND_OVERRIDE = null;   // ใช้ตอนเรนเดอร์การ์ดตัวอย่างหน้าแรก (ไม่แตะข้อมูลของผู้ใช้)
+const showsLand  = t => t !== 'ขายคอนโด';   // คอนโดไม่มีเนื้อที่เป็นไร่/งาน/ตร.ว.
+const showsHouse = t => t !== 'ขายที่ดิน';   // ที่ดินไม่มีห้องนอน/ห้องน้ำ/พื้นที่ใช้สอย
+const priceVal = () => parseInt(String(val('d_price')).replace(/[^\d]/g,''),10) || 0;
+function getData(raw){
+  if(DATA_OVERRIDE) return Object.assign({}, DATA_OVERRIDE);
+  const t = val('d_type');
+  const d = {type:t, title:val('d_title'), price:priceVal(), loc:val('d_loc'),
+    rai:+val('d_rai')||0, ngan:+val('d_ngan')||0, wa:+val('d_wa')||0, bed:+val('d_bed')||0,
+    bath:+val('d_bath')||0, park:+val('d_park')||0, living:+val('d_living')||0, desc:val('d_desc')};
+  // raw=true → ค่าทั้งหมดที่กรอก (ใช้บันทึก) ; ปกติ → ตัดฟิลด์ที่ซ่อนอยู่ตามประเภทออก ไม่ให้ขึ้นบนการ์ด
+  if(!raw){
+    if(!showsLand(t))  d.rai = d.ngan = d.wa = 0;
+    if(!showsHouse(t)) d.bed = d.bath = d.park = d.living = 0;
+  }
+  return d;
+}
+function totalWa(d){ return d.rai*400 + d.ngan*100 + d.wa; }
+function areaText(d){
+  const w = totalWa(d); if(w<=0) return '';
+  const r=Math.floor(w/400), g=Math.floor((w%400)/100), a=w%100, s=[];
+  if(r) s.push(r+' ไร่'); if(g) s.push(g+' งาน'); if(a||!s.length) s.push(a+' ตร.ว.');
+  return s.join(' ');
+}
+function palOf(){
+  const base = DS.palettes[CFG.palette] || DS.palettes['modblue'];
+  return {
+    bg: CFG.custom.bg || base.bg,
+    text: CFG.custom.text || base.text,
+    accent: CFG.custom.accent || base.accent,
+    price: CFG.custom.price || CFG.custom.accent || base.price || base.accent,
+    primary: CFG.custom.primary || base.primary,
+    secondary: base.secondary,
+    border: base.border,
+    dark: base.dark
+  };
+}
+function brandData(){ if(BRAND_OVERRIDE) return BRAND_OVERRIDE; return (BRAND && BRAND.isDefault !== false) ? BRAND : {agent:'', phone:'', line:''}; }
+
+/* ===================== ตั้งค่า (แก้ตรงนี้) ===================== */
+const API_URL          = 'https://fastpost.thanawut7002.workers.dev';   // URL ของ Cloudflare Worker เช่น 'https://fastpost-api.yourname.workers.dev'
+const GOOGLE_CLIENT_ID = '';   // Google OAuth Client ID (Web)
+const FACEBOOK_APP_ID  = '';   // Facebook App ID
+const PROMPTPAY_ID     = '0986369460';   // เบอร์พร้อมเพย์ (10 หลัก) / เลขบัตร ปชช. (13) / e-Wallet (15) — ระบบสร้าง QR ยอด 59 บาทให้อัตโนมัติ
+const PAY_QR_SRC       = '';   // (ทางเลือก) URL/data:image ของ QR สำเร็จรูป ถ้าใส่จะใช้แทน PROMPTPAY_ID
+const PAYEE_NAME       = 'นายธนวุฒิ ประไชโย';  // ชื่อบัญชีรับเงิน
+const PRO_PRICE        = 59;
+const FREE_FOR_ALL     = true;  // true = เปิดใช้ฟรีไม่จำกัด ไม่มีลายน้ำ ไม่นับโควตา (รับเงินแบบสนับสนุน/โดเนทเท่านั้น) — ระบบ Pro/โควตาเดิมยังอยู่ในโค้ด ไม่ได้ลบ
+const SAMPLE_PHOTOS    = {land:[], house:[], condo:[], town:[]};   // (ทางเลือก) ใส่ URL/data:image ของรูปจริงที่คุณมีสิทธิ์ใช้ (ถ่ายเอง/ซื้อ/ลิขสิทธิ์อนุญาต) เช่น land:['img/land1.jpg',...] ถ้าเว้นว่างจะใช้ภาพวาดตัวอย่างในระบบ
+const DONATE_NOTE      = 'ค่าเซิร์ฟเวอร์และพัฒนาเทมเพลตใหม่';
+const FREE_QUOTA       = 5;    // จำนวนภาพที่ดาวน์โหลดแบบไม่มีลายน้ำฟรีต่อเดือน (รีเซ็ตต้นเดือนปฏิทิน)
+const OPERATOR_NAME    = 'นายธนวุฒิ ประไชโย';  // ผู้ให้บริการ (ใช้ในข้อกำหนด/นโยบาย)
+const CONTACT_LINE     = '@319zfleg';           // LINE Official Account ID (ต้องมี @ นำหน้า)
+const REPLY_TIME       = 'ภายใน 30 นาที';       // ข้อความบอกเวลาตอบรหัส — แก้ให้ตรงกับที่คุณตอบได้จริง
+const CONTACT_EMAIL    = 'ใส่อีเมล@example.com'; // อีเมลติดต่อ
+const LEGAL_UPDATED    = '8 ตุลาคม 2569';
+/* ============================================================== */
+
+let SESSION = null, GSI_READY = false, FB_READY = false;
+
+/* ---- โควตาดาวน์โหลดฟรี (นับเมื่อดาวน์โหลดสำเร็จ รีเซ็ตทุกเดือน เก็บใน localStorage) ---- */
+const QUOTA_KEY = 'fastpost_quota';
+let PENDING_FMT = 'png';
+function monthKey(){ const d = new Date(); return d.getFullYear() + '-' + String(d.getMonth()+1).padStart(2,'0'); }
+function quotaUsed(){
+  try{ const q = JSON.parse(localStorage.getItem(QUOTA_KEY)||'null'); return (q && q.m === monthKey()) ? (+q.n||0) : 0; }
+  catch(_){ return 0; }
+}
+function quotaLeft(){ return Math.max(0, FREE_QUOTA - quotaUsed()); }
+function quotaAdd(){ try{ localStorage.setItem(QUOTA_KEY, JSON.stringify({m:monthKey(), n:quotaUsed()+1})); }catch(_){} }
+function updateQuotaUI(){
+  const box = document.getElementById('quotaBox'); if(!box) return;
+  if(FREE_FOR_ALL){
+    box.className = 'quota-box free';
+    box.innerHTML = '<b>ใช้ฟรี ไม่มีลายน้ำ ไม่จำกัดภาพ</b><a onclick="goPage(\'donate\')">ชอบเครื่องมือนี้? ช่วยค่ากาแฟทีมงาน ☕</a>';
+    return;
+  }
+  document.querySelectorAll('.js-quota-total').forEach(e => e.textContent = FREE_QUOTA);
+  if(CURRENT_PLAN === 'pro'){
+    const exp = +localStorage.getItem(LS.planExp)||0;
+    box.className = 'quota-box pro';
+    box.innerHTML = '⭐ <b>Pro</b> ดาวน์โหลดไม่จำกัด ไม่มีลายน้ำ' + (exp ? ' (ถึง ' + new Date(exp).toLocaleDateString('th-TH') + ')' : '');
+    return;
+  }
+  const left = quotaLeft();
+  const dots = '<div class="quota-dots">' + Array.from({length:FREE_QUOTA}, (_,i) => '<i class="' + (i < left ? 'on' : '') + '"></i>').join('') + '</div>';
+  if(left > 0){
+    box.className = 'quota-box' + (left <= 2 ? ' low' : '');
+    box.innerHTML = 'ดาวน์โหลดไม่มีลายน้ำฟรี เดือนนี้เหลือ <b>' + left + ' จาก ' + FREE_QUOTA + ' ภาพ</b>' + dots +
+      '<div style="margin-top:6px"><a onclick="openCheckoutModal()">ลบลายน้ำไม่จำกัด สมัคร Pro</a></div>';
+  } else {
+    box.className = 'quota-box out';
+    box.innerHTML = 'ใช้สิทธิ์ฟรีเดือนนี้ครบแล้ว ภาพที่ดาวน์โหลดต่อจากนี้จะมีลายน้ำ' + dots +
+      '<div style="margin-top:6px"><a onclick="openCheckoutModal()">สมัคร Pro 59.-/เดือน ลบลายน้ำไม่จำกัด</a></div>';
+  }
+}
+function openQuotaModal(fmt){ PENDING_FMT = fmt || 'png'; document.getElementById('quotaModal').classList.add('on'); }
+function closeQuotaModal(){ document.getElementById('quotaModal').classList.remove('on'); }
+function quotaUpgrade(){ closeQuotaModal(); openCheckoutModal(); }
+function quotaDownloadWithWatermark(){ closeQuotaModal(); doExport(PENDING_FMT, true); }
+
+async function api(path, opts){
+  opts = opts || {};
+  if(!API_URL) throw Object.assign(new Error('ระบบสมาชิกยังไม่เปิดใช้งาน'), {status:0});
+  const headers = {'Content-Type':'application/json'};
+  if(SESSION) headers.Authorization = 'Bearer ' + SESSION;
+  const r = await fetch(API_URL.replace(/\/$/,'') + path, {method: opts.method||'GET', headers, body: opts.body ? JSON.stringify(opts.body) : undefined});
+  const j = await r.json().catch(()=>({}));
+  if(!r.ok) throw Object.assign(new Error(j.error || ('HTTP '+r.status)), {status:r.status});
+  return j;
+}
+
+/* ---- Auth ---- */
+function authNotice(m){ const e=document.getElementById('authNotice'); if(e) e.textContent = m||''; }
+function openAuthModal(){
+  document.getElementById('authModal').classList.add('on');
+  authNotice('');
+  const gb = document.getElementById('gBtn'), fb = document.getElementById('fbBtn');
+  if(!API_URL){ authNotice('ระบบเข้าสู่ระบบยังไม่ได้ตั้งค่า (ผู้ดูแลต้องใส่ API_URL)'); gb.style.display='none'; fb.style.display='none'; return; }
+  if(GOOGLE_CLIENT_ID){ gb.style.display='flex'; initGoogle(); } else gb.style.display='none';
+  if(FACEBOOK_APP_ID){ fb.style.display='flex'; loadFB(); } else fb.style.display='none';
+  if(!GOOGLE_CLIENT_ID && !FACEBOOK_APP_ID) authNotice('ยังไม่ได้ตั้งค่าผู้ให้บริการล็อกอิน');
+}
+function closeAuthModal(){ document.getElementById('authModal').classList.remove('on'); }
+async function authBtnClick(){
+  if(CURRENT_PLAN==='pro' && !CURRENT_USER){
+    const exp = +localStorage.getItem(LS.planExp)||0;
+    await uiAlert('แพ็กเกจ Pro ใช้ได้ถึง ' + new Date(exp).toLocaleDateString('th-TH'), {title:'สถานะแพ็กเกจ'});
+    return;
+  }
+  if(CURRENT_USER){ if(await uiConfirm('คุณต้องการออกจากระบบใช่ไหม?', {title:'ออกจากระบบ', ok:'ออกจากระบบ'})) logout(); }
+  else openAuthModal();
+}
+function initGoogle(tries){
+  tries = tries||0;
+  if(!(window.google && google.accounts && google.accounts.id)){
+    if(tries<20) setTimeout(()=>initGoogle(tries+1), 250); else authNotice('โหลดปุ่ม Google ไม่สำเร็จ ตรวจสอบอินเทอร์เน็ต');
+    return;
+  }
+  if(!GSI_READY){ google.accounts.id.initialize({client_id: GOOGLE_CLIENT_ID, callback: onGoogleCredential}); GSI_READY = true; }
+  const el = document.getElementById('gBtn'); el.innerHTML='';
+  google.accounts.id.renderButton(el, {theme:'outline', size:'large', shape:'pill', width:300, text:'signin_with', locale:'th'});
+}
+async function onGoogleCredential(resp){
+  try{ setSession(await api('/auth/google', {method:'POST', body:{credential: resp.credential}})); }
+  catch(e){ authNotice('เข้าสู่ระบบด้วย Google ไม่สำเร็จ'); }
+}
+function loadFB(){
+  if(FB_READY || document.getElementById('fb-sdk')) return;
+  window.fbAsyncInit = function(){ FB.init({appId: FACEBOOK_APP_ID, cookie:false, xfbml:false, version:'v19.0'}); FB_READY = true; };
+  const sc = document.createElement('script'); sc.id='fb-sdk'; sc.async = true; sc.src = 'https://connect.facebook.net/th_TH/sdk.js';
+  document.body.appendChild(sc);
+}
+function fbLogin(){
+  if(!FB_READY || !window.FB){ authNotice('กำลังโหลด Facebook โปรดลองกดอีกครั้ง'); loadFB(); return; }
+  FB.login(function(r){
+    if(!r || !r.authResponse){ authNotice('ยกเลิกการเข้าสู่ระบบ'); return; }
+    api('/auth/facebook', {method:'POST', body:{accessToken: r.authResponse.accessToken}})
+      .then(setSession).catch(()=>authNotice('เข้าสู่ระบบด้วย Facebook ไม่สำเร็จ'));
+  }, {scope:'public_profile'});
+}
+function setSession(res){
+  SESSION = res.session; CURRENT_USER = res.user.name;
+  try{ localStorage.setItem(LS.session, SESSION); localStorage.setItem(LS.user, CURRENT_USER); }catch(_){}
+  applyPlan(res.pro, false);
+  closeAuthModal();
+  toast('เข้าสู่ระบบสำเร็จ — สวัสดี ' + CURRENT_USER);
+}
+function clearSession(){
+  SESSION = null; CURRENT_USER = null; CURRENT_PLAN = 'free';
+  try{ [LS.session, LS.user, LS.plan, LS.planExp].forEach(k=>localStorage.removeItem(k)); }catch(_){}
+  updateAuthBtn(); renderCard();
+}
+function logout(){ clearSession(); toast('ออกจากระบบแล้ว'); }
+function applyPlan(pro, announce){
+  const exp = pro && pro.exp;
+  if(exp && exp > Date.now()){
+    CURRENT_PLAN = 'pro';
+    try{ localStorage.setItem(LS.plan,'pro'); localStorage.setItem(LS.planExp, String(exp)); }catch(_){}
+    if(announce) toast('🎉 อัปเกรดเป็น Pro แล้ว ใช้ได้ถึง ' + new Date(exp).toLocaleDateString('th-TH'));
+  } else {
+    CURRENT_PLAN = 'free';
+    try{ localStorage.setItem(LS.plan,'free'); localStorage.removeItem(LS.planExp); }catch(_){}
+  }
+  updateAuthBtn(); renderCard(); updateQuotaUI();
+}
+async function refreshAccount(){
+  if(!SESSION || !API_URL) return;
+  try{ const r = await api('/me'); if(r.user){ CURRENT_USER = r.user.name; try{localStorage.setItem(LS.user, CURRENT_USER);}catch(_){} } applyPlan(r.pro, false); }
+  catch(e){ if(e.status===401){ const wasPro = CURRENT_PLAN==='pro'; clearSession(); if(wasPro) toast('แพ็กเกจ Pro หมดอายุแล้ว'); } }
+}
+function updateAuthBtn(){
+  const btn = document.getElementById('authBtn'); if(!btn) return;
+  const loginOn = !!(API_URL && (GOOGLE_CLIENT_ID || FACEBOOK_APP_ID));
+  if(CURRENT_PLAN==='pro'){ btn.style.display=''; btn.textContent = (CURRENT_USER ? '👤 '+CURRENT_USER.slice(0,14)+' ' : '') + '⭐ Pro'; }
+  else if(CURRENT_USER){ btn.style.display=''; btn.textContent = '👤 ' + CURRENT_USER.slice(0,18); }
+  else if(loginOn){ btn.style.display=''; btn.textContent = 'เข้าสู่ระบบ'; }
+  else btn.style.display='none';   // ยังไม่เปิดล็อกอิน: ซ่อนปุ่ม
+}
+
+/* ---- พร้อมเพย์ QR (EMVCo / Thai QR Payment) ---- */
+function crc16(str){
+  let crc = 0xFFFF;
+  for(let i=0;i<str.length;i++){ crc ^= str.charCodeAt(i) << 8; for(let j=0;j<8;j++) crc = (crc & 0x8000) ? ((crc<<1) ^ 0x1021) : (crc<<1); crc &= 0xFFFF; }
+  return crc.toString(16).toUpperCase().padStart(4,'0');
+}
+function tlv(id, v){ return id + String(v.length).padStart(2,'0') + v; }
+function promptPayPayload(target, amount){
+  const t = String(target).replace(/\D/g,''); let sub, v;
+  if(t.length===10 && t[0]==='0'){ sub='01'; v='0066'+t.slice(1); }
+  else if(t.length===13){ sub='02'; v=t; }
+  else if(t.length===15){ sub='03'; v=t; }
+  else throw new Error('PromptPay ID ไม่ถูกต้อง');
+  let p = tlv('00','01') + tlv('01', amount ? '12' : '11') + tlv('29', tlv('00','A000000677010111') + tlv(sub, v)) + tlv('53','764');
+  if(amount) p += tlv('54', Number(amount).toFixed(2));
+  p += tlv('58','TH') + '6304';
+  return p + crc16(p);
+}
+function makeQrDataUrl(text){ const qr = qrcode(0,'M'); qr.addData(text); qr.make(); return qr.createDataURL(6,4); }
+
+/* ---- Checkout ---- */
+function openCheckoutModal(){
+  const img = document.getElementById('checkoutQrImg'), lbl = document.getElementById('checkoutQrLabel');
+  let src = PAY_QR_SRC, auto = false;
+  if(!src && PROMPTPAY_ID){ try{ src = makeQrDataUrl(promptPayPayload(PROMPTPAY_ID, PRO_PRICE)); auto = true; }catch(e){ console.error(e); } }
+  const frame = document.getElementById('checkoutQrFrame'), fb = document.getElementById('checkoutQrFallback');
+  if(img){
+    if(src){ img.src = src; if(frame) frame.style.display='flex'; if(fb) fb.style.display='none'; }
+    else {
+      img.removeAttribute('src');
+      if(frame) frame.style.display='none';       // ไม่โชว์กรอบขาวว่าง
+      if(fb) fb.style.display='block';            // แสดงวิธีขอ QR ทาง LINE แทน
+      console.warn('ยังไม่ได้ตั้งค่า PROMPTPAY_ID หรือ PAY_QR_SRC ในส่วนตั้งค่าของไฟล์');
+    }
+  }
+  if(lbl) lbl.textContent = !src ? 'โอนเงิน ' + PRO_PRICE + '.-' : auto ? ('สแกนเพื่อโอน ' + PRO_PRICE + '.00 บาท (ระบบใส่ยอดให้อัตโนมัติ)') : ('สแกน QR เพื่อโอนเงิน ' + PRO_PRICE + '.-');
+  const nm = document.getElementById('checkoutAgentName'); if(nm) nm.textContent = 'ชื่อบัญชี: ' + PAYEE_NAME;
+  const sb = document.getElementById('lineSlipBtn'); if(sb) sb.href = lineSlipUrl();
+  const ab = document.getElementById('lineAddLink'); if(ab) ab.href = lineAddUrl();
+  document.getElementById('checkoutModal').classList.add('on');
+}
+function lineSlipUrl(){
+  const msg = 'สมัคร FastPost Pro ' + PRO_PRICE + '.- ส่งสลิปการโอนแล้ว ขอรับรหัสปลดล็อกด้วย';
+  return 'https://line.me/R/oaMessage/' + CONTACT_LINE + '/?' + encodeURIComponent(msg);
+}
+function lineAddUrl(){ return 'https://line.me/R/ti/p/' + CONTACT_LINE; }
+function closeCheckoutModal(){ document.getElementById('checkoutModal').classList.remove('on'); }
+
+async function verifyProCode(){
+  const code = val('proCodeInput').trim().toUpperCase();
+  if(!code){ toast('กรุณากรอกรหัสปลดล็อก'); return; }
+  if(!API_URL){ toast('ระบบรหัส Pro ยังไม่เปิดใช้งาน'); return; }
+  try{
+    const r = await api('/pro/redeem', {method:'POST', body:{code}});
+    if(r.session){ SESSION = r.session; try{ localStorage.setItem(LS.session, SESSION); }catch(_){} }
+    applyPlan(r.pro, true);
+    syncUI();
+    closeCheckoutModal();
+    set('proCodeInput','');
+  }catch(e){
+    if(e.status===404) toast('❌ รหัสไม่ถูกต้อง');
+    else if(e.status===409) toast('❌ รหัสนี้ถูกใช้ไปแล้ว');
+    else if(e.status===0) toast('❌ ยังไม่ได้ตั้งค่า API_URL');
+    else toast('❌ ' + (e.message || 'เกิดข้อผิดพลาด'));
+  }
+}
+
+function fillLegal(){
+  const m = {'.js-reply':REPLY_TIME ? ' ' + REPLY_TIME : '', '.js-op':OPERATOR_NAME, '.js-line':CONTACT_LINE, '.js-email':CONTACT_EMAIL, '.js-upd':LEGAL_UPDATED};
+  Object.entries(m).forEach(([sel,v]) => document.querySelectorAll(sel).forEach(e => e.textContent = v));
+}
+
+/* Auto-Fit ฟังก์ชันปรับอัตโนมัติ */
+function autoFitDesign(){
+  CFG.style.titleScale = 100;
+  CFG.style.priceScale = 110;
+  CFG.style.pad = (CFG.size === 's16x9') ? 28 : 40;
+  syncUI();
+  renderCard();
+  toast('⚡ จัดหน้าอัตโนมัติเรียบร้อย!');
+}
+
+async function toBase64(url) {
+  try {
+    const res = await fetch(url);
+    const blob = await res.blob();
+    return new Promise((resolve) => {
+      const reader = new FileReader();
+      reader.onloadend = () => resolve(reader.result);
+      reader.readAsDataURL(blob);
+    });
+  } catch (e) {
+    return url;
+  }
+}
+
+let MAP_QR_BASE64 = '';
+async function updateMapQRBase64() {
+  if(!MAP_PINNED || !MAPLAT || !MAPLNG){ MAP_QR_BASE64 = ''; renderCard(); return; }
+  const mapUrl = `https://www.google.com/maps?q=${MAPLAT},${MAPLNG}`;
+  try{
+    if(typeof qrcode === 'function'){           // สร้าง QR ในเบราว์เซอร์ ไม่พึ่งเว็บภายนอก
+      const qr = qrcode(0, 'M'); qr.addData(mapUrl); qr.make();
+      MAP_QR_BASE64 = qr.createDataURL(6, 2);
+    } else throw new Error('no qr lib');
+  }catch(_){
+    MAP_QR_BASE64 = await toBase64(`https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=${encodeURIComponent(mapUrl)}`);
+  }
+  renderCard();
+}
+
+/* Render Engine */
+function renderCard(){
+  const stage = document.getElementById('stage');
+  if(!stage) return;
+  const sz = DS.sizes[CFG.size] || DS.sizes['s4x5'], p = palOf(), f = DS.fonts[CFG.font] || DS.fonts['prompt_sarabun'];
+  const st = CFG.style, d = getData(), B = brandData();
+  const W = sz.w, H = sz.h, u = W/1080, pad = (st.pad||40)*u, ta = st.align||'left';
+  const hd = `'${f.heading}',sans-serif`, bd = `'${f.body}',sans-serif`;
+  const sub = p.dark ? 'rgba(255,255,255,.66)' : 'rgba(0,0,0,.52)';
+  const line = p.dark ? 'rgba(255,255,255,.16)' : (p.border||'#E3E6EA');
+
+  const is16_9 = (CFG.size === 's16x9');
+  const horizSplit = (CFG.layout==='split') && (H/W <= 1.15);
+
+  const tSize = (46*(st.titleScale||100)/100)*u;
+  
+  const watermark = (!SAMPLE_MODE && !FREE_FOR_ALL && CURRENT_PLAN === 'free' && quotaLeft() <= 0) ? 
+    `<div style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;pointer-events:none;z-index:99;transform:rotate(-30deg);opacity:0.26">`+
+    `<div style="font-family:${hd};font-weight:700;font-size:${80*u}px;color:${p.dark?'#fff':'#000'};letter-spacing:6px;white-space:nowrap;border:4px dashed currentColor;padding:10px 40px">FASTPOST FREE VERSION</div>`+
+    `</div>` : '';
+
+  stage.style.cssText = `width:${W}px;height:${H}px;background:${p.bg};color:${p.text};`+
+    `font-family:${bd};display:flex;flex-direction:column;overflow:hidden;position:relative;`+
+    (st.border?`border:${3*u}px solid ${p.primary};`:'');
+
+  const WRAP = 'overflow-wrap:anywhere;word-break:break-word;';
+
+  const badge = () => {
+    if(!d.type) return '';
+    const fs = (is16_9?26:34)*u, pv=(is16_9?8:14)*u, ph=(is16_9?20:32)*u;
+    return `<div style="display:inline-block;font-family:${hd};font-weight:700;font-size:${fs}px;padding:${pv}px ${ph}px;border-radius:99px;letter-spacing:.8px;white-space:nowrap;background:${p.dark?p.accent:p.primary};color:${p.dark?'#0E0E0E':'#fff'};box-shadow:0 ${4*u}px ${12*u}px rgba(0,0,0,.15);">${esc(d.type)}</div>`;
+  };
+
+  const img = (i, h, r) => {
+    const src = IMGS[i];
+    const pos = IMG_POS[i] || {x:50, y:50};
+    if(src) return `<div class="draggable-img" data-img-idx="${i}" style="width:100%;height:${h};background:url('${src}') ${pos.x}% ${pos.y}%/cover no-repeat;border-radius:${r}px;cursor:grab;position:relative;"></div>`;
+    return `<div style="width:100%;height:${h};background:${p.dark?'#1C1C1C':'#E8EAED'};border-radius:${r}px;display:flex;align-items:center;justify-content:center;color:${sub};font-size:${24*u}px;font-family:${hd}">ภาพที่ ${i+1}</div>`;
+  };
+
+  const title = () => d.title ? `<div style="font-family:${hd};font-weight:700;font-size:${tSize}px;line-height:1.25;letter-spacing:-.3px;${WRAP}">${esc(d.title)}</div>` : '';
+  const loc = () => d.loc ? `<div style="font-size:${(is16_9?20:26)*u}px;line-height:1.4;margin-top:${(is16_9?4:8)*u}px;color:${sub};${WRAP}">${esc(d.loc)}</div>` : '';
+  
+  const priceBlock = (big) => {
+    if(!d.price) return '';
+    const base = (big?72:56)*(st.priceScale||100)/100*u;
+    const txt = baht(d.price);
+    const w = totalWa(d);
+    const per = (w>0 && d.price>0 && d.type==='ขายที่ดิน')
+      ? `<div style="font-size:${(big?24:22)*u}px;color:${sub};margin-top:${3*u}px;white-space:nowrap">${baht(Math.round(d.price/w))} บาท / ตร.ว.</div>` : '';
+    return `<div style="margin-top:${(big?0:(is16_9?6:14))*u}px"><div style="font-family:${hd};font-weight:700;font-size:${base}px;line-height:1.1;color:${p.price};letter-spacing:-.5px;white-space:nowrap">${txt}<span style="font-size:.5em;font-weight:500"> บาท</span></div>${per}</div>`;
+  };
+
+  const specs = () => {
+    const it = [];
+    if(areaText(d)) it.push(['เนื้อที่', areaText(d)]);
+    if(d.living)  it.push(['ใช้สอย', d.living+' ตร.ม.']);
+    if(d.bed)        it.push(['นอน', d.bed+' ห้อง']);
+    if(d.bath)      it.push(['น้ำ', d.bath+' ห้อง']);
+    if(d.park)      it.push(['จอดรถ', d.park+' คัน']);
+    if(!it.length) return '';
+    const padV = (is16_9?4:9)*u, padH = (is16_9?8:16)*u;
+    return `<div style="display:flex;flex-wrap:wrap;gap:${(is16_9?6:10)*u}px;margin-top:${(is16_9?6:16)*u}px;justify-content:${ta==='center'?'center':'flex-start'}">`+
+      it.map(([k,v])=>`<div style="border:${1.5*u}px solid ${line};border-radius:${8*u}px;padding:${padV}px ${padH}px;white-space:nowrap"><div style="font-size:${(is16_9?14:19)*u}px;color:${sub};line-height:1.2">${k}</div><div style="font-family:${hd};font-weight:600;font-size:${(is16_9?18:25)*u}px;line-height:1.3">${v}</div></div>`).join('')+`</div>`;
+  };
+
+  const desc = () => d.desc ? `<div style="font-size:${(is16_9?18:25)*u}px;line-height:1.5;color:${sub};margin-top:${(is16_9?6:14)*u}px;${WRAP}">${esc(d.desc)}</div>` : '';
+  const divider = () => `<div style="height:${1.5*u}px;background:${line};margin:${(is16_9?6:16)*u}px 0"></div>`;
+  
+  const contact = () => {
+    const rows = [];
+    if(B.agent) {
+      rows.push(`<div style="font-family:${hd};font-weight:600;font-size:${(is16_9?20:26)*u}px;line-height:1.3;${WRAP}">${esc(B.agent)}</div>`);
+    }
+    if(B.phone) {
+      rows.push(`<div style="font-size:${(is16_9?18:23)*u}px;color:${sub};margin-top:${(is16_9?2:4)*u}px;line-height:1.4;${WRAP}">โทร ${esc(B.phone)}</div>`);
+    }
+    if(B.line) {
+      rows.push(`<div style="font-size:${(is16_9?18:23)*u}px;color:${sub};margin-top:${(is16_9?2:4)*u}px;line-height:1.4;${WRAP}">LINE ${esc(B.line)}</div>`);
+    }
+
+    const hasQR = QRCODE;
+    const hasMapQR = (MAP_PINNED && MAP_QR_BASE64 && mapOn());
+    if(!rows.length && !hasQR && !hasMapQR) return '';
+
+    const qrSize = (is16_9?55:85)*u;
+    const rightImgs = [];
+    if(hasQR){
+      rightImgs.push(`<div style="text-align:center"><div style="width:${qrSize}px;height:${qrSize}px;background:#fff url('${QRCODE}') center/contain no-repeat;border-radius:${6*u}px;border:1px solid ${line};padding:${2*u}px"></div><div style="font-size:${(is16_9?9:12)*u}px;color:${sub};margin-top:2px">สแกนไลน์</div></div>`);
+    }
+    if(hasMapQR){
+      rightImgs.push(`<div style="text-align:center"><div style="width:${qrSize}px;height:${qrSize}px;background:#fff url('${MAP_QR_BASE64}') center/contain no-repeat;border-radius:${6*u}px;border:1px solid ${line};padding:${2*u}px"></div><div style="font-size:${(is16_9?9:12)*u}px;color:${sub};margin-top:2px">แผนที่นำทาง</div></div>`);
+    }
+
+    const center = (ta==='center' && !rightImgs.length);
+    return divider()+`<div style="display:flex;align-items:center;gap:${10*u}px;justify-content:${center?'center':'space-between'}">`+
+      `<div style="min-width:0;flex:1;text-align:${center?'center':'left'}">${rows.join('')}</div>`+
+      (rightImgs.length ? `<div style="display:flex;gap:${10*u}px;align-items:center;flex:none">${rightImgs.join('')}</div>` : '') +
+      `</div>`;
+  };
+
+  const infoBlock = (extra='') => `<div style="padding:${pad}px;text-align:${ta};display:flex;flex-direction:column;flex:1;justify-content:center;min-height:0;overflow:hidden">
+      ${extra}${title()}${loc()}${priceBlock(false)}${specs()}${desc()}${contact()}</div>`;
+
+  let html = '';
+  const lay = CFG.layout || 'top';
+  
+  if(is16_9){
+    const r = (st.radius||0)*u;
+    if(lay === 'grid' && IMGS.length > 1){
+      const n = Math.max(2, Math.min(4, IMGS.length));
+      const cells = []; for(let i=0;i<n;i++) cells.push(`<div style="min-height:0">${img(i,'100%',r)}</div>`);
+      html = `<div style="display:flex;height:100%;overflow:hidden">
+        <div style="width:44%;flex:none;padding:${pad}px 0 ${pad}px ${pad}px;display:grid;grid-template-columns:repeat(2,1fr);grid-template-rows:repeat(${n>2?2:1},1fr);gap:${6*u}px">${cells.join('')}</div>
+        <div style="flex:1;min-width:0;display:flex">${infoBlock(badge()?`<div style="margin-bottom:${6*u}px">${badge()}</div>`:'')}</div></div>`;
+    } else if(horizSplit || lay === 'split'){
+      html = `<div style="display:flex;height:100%;overflow:hidden">
+        <div style="width:44%;flex:none;padding:${pad}px 0 ${pad}px ${pad}px">${img(0,'100%',r)}</div>
+        <div style="flex:1;min-width:0;display:flex">${infoBlock(badge()?`<div style="margin-bottom:${6*u}px">${badge()}</div>`:'')}</div></div>`;
+    } else {
+      const ih = Math.round(H*0.38), ov = (st.overlay||40)/100;
+      html = `<div style="position:relative;height:${ih}px;flex:none;overflow:hidden">
+          ${img(0,'100%',0)}
+          <div style="position:absolute;inset:0;background:linear-gradient(to top, rgba(0,0,0,${ov}) 0%, rgba(0,0,0,${ov*0.5}) 42%, rgba(0,0,0,0) 78%)"></div>
+          <div style="position:absolute;left:${pad}px;right:${pad}px;bottom:${pad*0.5}px;text-align:${ta};color:#fff">
+            ${badge()}
+          </div></div>
+        <div style="padding:${pad}px;text-align:${ta};display:flex;flex-direction:column;flex:1;justify-content:center;min-height:0;overflow:hidden">
+          ${priceBlock(false)}${specs()}${desc()}${contact()}</div>`;
+    }
+  } else {
+    if(lay === 'hero'){
+      const ih = Math.round(H*0.48), ov = (st.overlay||40)/100;
+      html = `<div style="position:relative;height:${ih}px;flex:none;overflow:hidden">
+          ${img(0,'100%',0)}
+          <div style="position:absolute;inset:0;background:linear-gradient(to top, rgba(0,0,0,${ov}) 0%, rgba(0,0,0,${ov*0.5}) 42%, rgba(0,0,0,0) 78%)"></div>
+          <div style="position:absolute;left:${pad}px;right:${pad}px;bottom:${pad}px;text-align:${ta};color:#fff">
+            ${badge()}${badge()?`<div style="height:${14*u}px"></div>`:''}
+            <div style="font-family:${hd};font-weight:700;font-size:${tSize}px;line-height:1.25;text-shadow:0 ${2*u}px ${10*u}px rgba(0,0,0,.45);${WRAP}">${esc(d.title)}</div>
+            ${d.loc?`<div style="font-size:${26*u}px;color:rgba(255,255,255,.85);margin-top:${6*u}px;text-shadow:0 ${1*u}px ${6*u}px rgba(0,0,0,.5);${WRAP}">${esc(d.loc)}</div>`:''}
+          </div></div>
+        <div style="padding:${pad}px;text-align:${ta};display:flex;flex-direction:column;flex:1;justify-content:center;min-height:0;overflow:hidden">
+          ${priceBlock(false)}${specs()}${desc()}${contact()}</div>`;
+    }
+    else if(lay === 'top'){
+      const ih = Math.round(H*0.40), r = (st.radius||0)*u;
+      html = `<div style="padding:${pad}px ${pad}px 0;flex:none">${img(0, ih+'px', r)}</div>
+        ${infoBlock(badge()?`<div style="margin-bottom:${14*u}px">${badge()}</div>`:'')}`;
+    }
+    else if(lay === 'split'){
+      if(!horizSplit){
+        const ih = Math.round(H*0.35), r = (st.radius||0)*u;
+        html = `<div style="padding:${pad}px ${pad}px 0;flex:none">${img(0, ih+'px', r)}</div>
+          ${infoBlock(badge()?`<div style="margin-bottom:${14*u}px">${badge()}</div>`:'')}`;
+      } else {
+        const r = (st.radius||0)*u;
+        html = `<div style="display:flex;height:100%;overflow:hidden">
+          <div style="width:46%;flex:none;padding:${pad}px 0 ${pad}px ${pad}px">${img(0,'100%',r)}</div>
+          <div style="flex:1;min-width:0;display:flex">${infoBlock(badge()?`<div style="margin-bottom:${14*u}px">${badge()}</div>`:'')}</div></div>`;
+      }
+    }
+    else if(lay === 'grid'){
+      const n = Math.max(2, Math.min(4, IMGS.length||2)), r = (st.radius||0)*u;
+      const gh = Math.round(H*(n>2?0.32:0.26)), gap = 10*u, rows = n<=2?1:2;
+      const cells = []; for(let i=0;i<n;i++) cells.push(`<div style="min-height:0">${img(i,'100%',r)}</div>`);
+      html = `<div style="padding:${pad}px ${pad}px 0;flex:none">
+          <div style="display:grid;grid-template-columns:repeat(2,1fr);grid-template-rows:repeat(${rows},1fr);gap:${gap}px;height:${gh}px">${cells.join('')}</div>
+        </div>${infoBlock(badge()?`<div style="margin-bottom:${14*u}px">${badge()}</div>`:'')}`;
+    }
+    else {
+      const ih = Math.round(H*0.28), r = (st.radius||0)*u;
+      html = `<div style="padding:${pad}px ${pad}px 0;flex:none">${img(0, ih+'px', r)}</div>
+        <div style="padding:${pad}px;text-align:center;flex:1;display:flex;flex-direction:column;justify-content:center;min-height:0;overflow:hidden">
+          ${badge()?`<div style="margin-bottom:${14*u}px">${badge()}</div>`:''}
+          ${priceBlock(true)}
+          <div style="margin-top:${14*u}px">${title()}${loc()}</div>
+          ${specs()}${desc()}${contact()}
+        </div>`;
+    }
+  }
+  stage.innerHTML = html + watermark;
+  initImageDragging();
+  fitStage();
+  saveAll();
+}
+
+/* ระบบลากเลื่อนรูปภาพทุกรูป พร้อมบันทึกตำแหน่ง Persist ลง LocalStorage */
+let DRAG = null, DRAG_BOUND = false;
+function initImageDragging(){
+  const stage = document.getElementById('stage');
+  if(!stage || DRAG_BOUND) return;
+  DRAG_BOUND = true;
+  stage.addEventListener('pointerdown', e => {
+    const el = e.target.closest('.draggable-img'); if(!el) return;
+    DRAG = {el, idx: parseInt(el.dataset.imgIdx,10), x: e.clientX, y: e.clientY};
+    el.style.cursor = 'grabbing';
+    try{ el.setPointerCapture(e.pointerId); }catch(_){}
+    e.preventDefault();
+  });
+  window.addEventListener('pointermove', e => {
+    if(!DRAG) return;
+    const scale = (new DOMMatrix(getComputedStyle(stage).transform)).a || 1;
+    const dx = (e.clientX - DRAG.x)/scale, dy = (e.clientY - DRAG.y)/scale;
+    DRAG.x = e.clientX; DRAG.y = e.clientY;
+    const i = DRAG.idx;
+    if(!IMG_POS[i]) IMG_POS[i] = {x:50, y:50};
+    IMG_POS[i].x = Math.max(0, Math.min(100, IMG_POS[i].x - dx*0.1));
+    IMG_POS[i].y = Math.max(0, Math.min(100, IMG_POS[i].y - dy*0.1));
+    DRAG.el.style.backgroundPosition = `${IMG_POS[i].x}% ${IMG_POS[i].y}%`;
+    // sync same image if shown twice
+    stage.querySelectorAll(`.draggable-img[data-img-idx="${i}"]`).forEach(n => n.style.backgroundPosition = DRAG.el.style.backgroundPosition);
+  });
+  const end = () => {
+    if(!DRAG) return;
+    DRAG.el.style.cursor = 'grab'; DRAG = null;
+    try{ localStorage.setItem(LS.imgPos, JSON.stringify(IMG_POS.map(p=>[p.x,p.y]))); }catch(_){}
+  };
+  window.addEventListener('pointerup', end);
+  window.addEventListener('pointercancel', end);
+}
+
+function syncPvh(){
+  const mid = document.querySelector('.col.mid'); if(!mid) return;
+  const pinned = window.matchMedia('(max-width:1000px)').matches && getComputedStyle(mid).position === 'sticky';
+  document.documentElement.style.setProperty('--pvh', pinned ? mid.offsetHeight+'px' : '0px');
+}
+function fitStage(){
+  if(SAMPLE_MODE) return;
+  const sz = DS.sizes[CFG.size] || DS.sizes['s4x5'], holder = document.getElementById('holder'), stage = document.getElementById('stage');
+  if(!holder || !stage) return;
+  const mid = document.querySelector('.col.mid');
+  const compact = window.matchMedia('(max-width:1000px)').matches;   // มือถือ/แท็บเล็ต: พรีวิวย่อติดบน
+  let avail, maxH;
+  if(compact){
+    const short = window.innerHeight <= 520;                           // มือถือแนวนอน
+    avail = short ? Math.min(window.innerWidth*0.4, 320) : Math.min(window.innerWidth*0.44, 230);
+    maxH  = short ? Math.max(180, window.innerHeight*0.7) : Math.max(150, Math.min(window.innerHeight*0.27, 250));
+  }else{
+    if(!mid || !mid.clientWidth) return;                               // หน้าสร้างการ์ดยังซ่อนอยู่
+    avail = Math.min(mid.clientWidth - 28, 480);
+    maxH  = Math.max(320, window.innerHeight - 330);                   // เผื่อที่ให้แถบดาวน์โหลดใต้พรีวิว
+  }
+  const s = Math.min(avail/sz.w, maxH/sz.h, 1);
+  stage.style.transform = `scale(${s})`;
+  holder.style.width = (sz.w*s)+'px';
+  holder.style.height = (sz.h*s)+'px';
+  syncPvh();
+}
+window.addEventListener('resize', ()=>{ if(CFG) fitStage(); });
+
+/* Export */
+async function ensureFonts(fontKey){
+  const f = DS.fonts[fontKey || CFG.font] || DS.fonts['prompt_sarabun'];
+  const probe = 'ทดสอบภาษาไทย 1,234,567 บาท ฿ ตร.ว. ABC';
+  const jobs = [];
+  [f.heading, f.body].forEach(fam => ['400','500','600','700'].forEach(w =>
+    jobs.push(document.fonts.load(`${w} 40px '${fam}'`, probe).catch(()=>{}))));
+  await Promise.all(jobs);
+  await document.fonts.ready;
+}
+async function ensureImages(){
+  const nodes = [...document.querySelectorAll('#stage [style*="url("]')];
+  const urls = nodes.map(n => (n.getAttribute('style').match(/url\(['"]?(.*?)['"]?\)/)||[])[1]).filter(Boolean);
+  await Promise.all(urls.map(src => new Promise(res => { const im=new Image(); im.onload=im.onerror=res; im.src=src; })));
+}
+async function captureStage(){
+  await ensureFonts();
+  renderCard();
+  await ensureImages();
+  const stage = document.getElementById('stage'), holder = document.getElementById('holder'), sz = DS.sizes[CFG.size] || DS.sizes['s4x5'];
+  const pt = stage.style.transform;
+  const ph = {w:holder.style.width, h:holder.style.height, o:holder.style.overflow, p:holder.style.position, l:holder.style.left, t:holder.style.top};
+  stage.style.transform = 'none';
+  holder.style.width = sz.w+'px'; holder.style.height = sz.h+'px'; holder.style.overflow='hidden';
+  holder.style.position='fixed'; holder.style.left='-99999px'; holder.style.top='0';
+  let canvas;
+  try{
+    canvas = await html2canvas(stage, {scale:1, width:sz.w, height:sz.h, windowWidth:sz.w, windowHeight:sz.h,
+      backgroundColor:palOf().bg, useCORS:true, allowTaint:true, logging:false, imageTimeout:0});
+  } finally {
+    stage.style.transform = pt;
+    holder.style.position=ph.p; holder.style.left=ph.l; holder.style.top=ph.t;
+    holder.style.width=ph.w; holder.style.height=ph.h; holder.style.overflow=ph.o;
+  }
+  return canvas;
+}
+let EXPORTING = false, LAST_EXPORT = null;
+function setExportBusy(fmt, on){
+  document.querySelectorAll('.dock-btns .btn').forEach(b=>{
+    b.disabled = on; b.setAttribute('aria-busy', on && b.dataset.fmt === fmt ? 'true' : 'false');
+    const mine = on && b.dataset.fmt === fmt;
+    b.classList.toggle('loading', mine);
+    b.textContent = mine ? 'กำลังสร้างภาพ…' : b.dataset.label;
+  });
+}
+async function doExport(fmt, force){
+  if(EXPORTING) return;
+  const isFree = !FREE_FOR_ALL && (CURRENT_PLAN === 'free');
+  if(isFree && quotaLeft() <= 0 && !force){ openQuotaModal(fmt); return; }
+  const usesQuota = isFree && quotaLeft() > 0;   // ภาพนี้ไม่มีลายน้ำ ใช้โควตาฟรี
+  EXPORTING = true; setExportBusy(fmt, true);
+  try{
+    await new Promise(r=>requestAnimationFrame(()=>setTimeout(r, 30)));   // ให้ปุ่ม loading แสดงก่อนเริ่มงานหนัก
+    const c = await captureStage();
+    const mime = fmt==='jpg' ? 'image/jpeg' : 'image/png';
+    const url = c.toDataURL(mime, fmt==='jpg' ? 0.93 : undefined);
+    const name = `fastpost_${CFG.templateId}_${DS.sizes[CFG.size].w}x${DS.sizes[CFG.size].h}.${fmt}`;
+    const a = document.createElement('a');
+    a.download = name; a.href = url; document.body.appendChild(a); a.click(); a.remove();
+    LAST_EXPORT = {url, name, mime, fmt};
+    if(usesQuota){
+      quotaAdd();
+      const left = quotaLeft();
+      renderCard(); updateQuotaUI();
+      if(left === 0) toast('ดาวน์โหลดแล้ว — ใช้สิทธิ์ฟรีเดือนนี้ครบ ภาพถัดไปจะมีลายน้ำ');
+      else toast(`ดาวน์โหลด ${fmt.toUpperCase()} แล้ว — เหลือสิทธิ์ฟรีอีก ${left} ภาพ`);
+    } else if(FREE_FOR_ALL && !noSheetPref()){
+      openShareSheet();
+    } else {
+      toast(`ดาวน์โหลด ${fmt.toUpperCase()} แล้ว — ขอบคุณที่ใช้ FastPost`);
+    }
+  }catch(e){
+    console.error(e);
+    toast('สร้างภาพไม่สำเร็จ ลองอีกครั้ง — ถ้ายังไม่ได้ ให้รีเฟรชหน้านี้แล้วลองใหม่');
+  }finally{
+    EXPORTING = false; setExportBusy(fmt, false);
+  }
+}
+
+/* ===== แชร์หลังดาวน์โหลด: แคปชั่นอัตโนมัติ ===== */
+const NOSHEET_KEY = 'fastpost_nosheet';
+function noSheetPref(){ try{ return localStorage.getItem(NOSHEET_KEY) === '1'; }catch(_){ return false; } }
+function noMoreSheet(){ try{ localStorage.setItem(NOSHEET_KEY,'1'); }catch(_){} closeShareSheet(); toast('ปิดหน้าต่างแชร์แล้ว'); }
+function buildCaption(){
+  const d = getData(), B = brandData();
+  const icon = ({'ขายที่ดิน':'🏞️','ขายบ้าน':'🏡','ขายคอนโด':'🏢','ให้เช่า':'🔑','อาคารพาณิชย์':'🏬'})[d.type] || '🏠';
+  const L = [`${icon} ${d.type}${d.title ? ' | ' + d.title : ''}`];
+  if(d.loc) L.push('📍 ' + d.loc);
+  if(d.price) L.push('💰 ราคา ' + baht(d.price) + ' บาท');
+  const sp = [];
+  if(areaText(d)) sp.push('เนื้อที่ ' + areaText(d));
+  if(d.living) sp.push((d.type==='ขายคอนโด' ? 'ขนาดห้อง ' : 'พื้นที่ใช้สอย ') + d.living + ' ตร.ม.');
+  if(d.bed)  sp.push('ห้องนอน ' + d.bed);
+  if(d.bath) sp.push('ห้องน้ำ ' + d.bath);
+  if(d.park) sp.push('จอดรถ ' + d.park + ' คัน');
+  if(sp.length) L.push('📐 ' + sp.join(' • '));
+  if(d.desc) L.push('', d.desc);
+  const ct = [];
+  if(B.agent) ct.push(B.agent);
+  if(B.phone) ct.push('📞 ' + B.phone);
+  if(B.line)  ct.push('LINE: ' + B.line);
+  if(ct.length) L.push('', ...ct);
+  L.push('', '#อสังหาริมทรัพย์ #' + String(d.type).replace(/\s/g,''));
+  return L.join('\n');
+}
+function updateLineLink(){
+  const a = document.getElementById('shareLineBtn');
+  if(a) a.href = 'https://line.me/R/share?text=' + encodeURIComponent(val('capText'));
+}
+function openShareSheet(){
+  const t = document.getElementById('capText'); t.value = buildCaption(); updateLineLink();
+  document.getElementById('shareNativeBtn').hidden = !(navigator.share);
+  document.getElementById('shTitle').textContent = '✓ ดาวน์โหลด ' + (LAST_EXPORT ? LAST_EXPORT.fmt.toUpperCase() : '') + ' แล้ว';
+  modalOpen('shareSheet', 'capCopyBtn');
+}
+function closeShareSheet(){ modalClose('shareSheet'); }
+async function copyCaption(){
+  const t = document.getElementById('capText');
+  try{
+    if(navigator.clipboard && window.isSecureContext) await navigator.clipboard.writeText(t.value);
+    else { t.focus(); t.select(); if(!document.execCommand('copy')) throw new Error('copy failed'); }
+    toast('คัดลอกแคปชั่นแล้ว — ไปวางในโพสต์ได้เลย');
+  }catch(e){ t.focus(); t.select(); toast('คัดลอกอัตโนมัติไม่ได้ — เลือกข้อความแล้วกดคัดลอกเอง'); }
+}
+async function shareNative(){
+  if(!LAST_EXPORT) return;
+  const text = val('capText');
+  try{
+    const blob = await (await fetch(LAST_EXPORT.url)).blob();
+    const file = new File([blob], LAST_EXPORT.name, {type: LAST_EXPORT.mime});
+    const data = {files:[file], text};
+    if(navigator.canShare && navigator.canShare(data)) await navigator.share(data);
+    else await navigator.share({text});
+  }catch(e){ if(e && e.name !== 'AbortError') toast('แชร์ไม่สำเร็จ — ลองคัดลอกแคปชั่นแล้วแนบภาพเอง'); }
+}
+
+/* ===== กล่องโต้ตอบกลาง (แทน alert / confirm / prompt) ===== */
+let MODAL_PREV = null;
+function modalOpen(id, focusId){
+  MODAL_PREV = document.activeElement;
+  const o = document.getElementById(id); o.classList.add('on');
+  const f = document.getElementById(focusId); if(f) setTimeout(()=>f.focus(), 30);
+}
+function modalClose(id){
+  const o = document.getElementById(id); if(!o || !o.classList.contains('on')) return;
+  o.classList.remove('on');
+  if(MODAL_PREV && MODAL_PREV.focus){ try{ MODAL_PREV.focus(); }catch(_){} } MODAL_PREV = null;
+}
+let DLG = null;
+function dlgOpen(o){
+  return new Promise(res=>{
+    if(DLG) dlgClose();
+    DLG = {res, input: !!o.input};
+    document.getElementById('dlgTitle').textContent = o.title || '';
+    document.getElementById('dlgMsg').textContent = o.msg || '';
+    const inp = document.getElementById('dlgInput'); inp.hidden = !o.input; inp.value = o.value || '';
+    const ok = document.getElementById('dlgOk'), cn = document.getElementById('dlgCancel');
+    ok.textContent = o.ok || 'ตกลง'; ok.className = 'btn ' + (o.danger ? 'danger' : 'pri');
+    cn.textContent = o.cancel || 'ยกเลิก'; cn.hidden = !!o.noCancel;
+    ok.onclick = () => dlgClose(true);
+    cn.onclick = () => dlgClose(false);
+    inp.onkeydown = e => { if(e.key === 'Enter'){ e.preventDefault(); dlgClose(true); } };
+    modalOpen('dlg', o.input ? 'dlgInput' : (o.danger ? 'dlgCancel' : 'dlgOk'));
+    if(o.input) setTimeout(()=>{ try{ inp.select(); }catch(_){} }, 40);
+  });
+}
+function dlgClose(v){
+  if(!DLG) return;
+  const d = DLG; DLG = null;
+  const inp = document.getElementById('dlgInput'), txt = inp.value.trim();
+  modalClose('dlg');
+  d.res(d.input ? (v === true && txt ? txt : null) : (v === true));
+}
+const uiConfirm = (msg, o) => dlgOpen(Object.assign({msg}, o));
+const uiAlert   = (msg, o) => dlgOpen(Object.assign({msg, noCancel:true}, o));
+const uiPrompt  = (msg, o) => dlgOpen(Object.assign({msg, input:true}, o));
+document.addEventListener('keydown', e=>{
+  const top = [...document.querySelectorAll('.modal-overlay.on')].pop(); if(!top) return;
+  if(e.key === 'Escape'){
+    if(top.id === 'dlg') dlgClose(false); else if(top.id === 'shareSheet') closeShareSheet(); return;
+  }
+  if(e.key === 'Tab'){                                   // กันโฟกัสหลุดออกนอกกล่อง
+    const f = [...top.querySelectorAll('button,a[href],input,textarea,select,[tabindex]:not([tabindex="-1"])')].filter(x=>!x.hidden && !x.disabled && x.offsetParent !== null);
+    if(!f.length) return;
+    const first = f[0], last = f[f.length-1];
+    if(e.shiftKey && document.activeElement === first){ last.focus(); e.preventDefault(); }
+    else if(!e.shiftKey && document.activeElement === last){ first.focus(); e.preventDefault(); }
+  }
+});
+
+/* Randomizer */
+function randomizeDesign(){
+  const tplKeys = Object.keys(DS.templates);
+  const palKeys = Object.keys(DS.palettes);
+  const fontKeys = Object.keys(DS.fonts);
+  const layKeys = Object.keys(DS.layouts);
+  const szKeys = Object.keys(DS.sizes);
+  const aligns = ['left','center'];
+
+  CFG.templateId = tplKeys[Math.floor(Math.random()*tplKeys.length)];
+  CFG.palette = palKeys[Math.floor(Math.random()*palKeys.length)];
+  CFG.font = fontKeys[Math.floor(Math.random()*fontKeys.length)];
+  CFG.layout = layKeys[Math.floor(Math.random()*layKeys.length)];
+  CFG.size = szKeys[Math.floor(Math.random()*szKeys.length)];
+  CFG.custom = {};
+
+  CFG.style.align = aligns[Math.floor(Math.random()*aligns.length)];
+  CFG.style.pad = (CFG.size === 's16x9') ? 28 : 40;
+  CFG.style.titleScale = 90 + Math.floor(Math.random()*5)*10;
+  CFG.style.priceScale = 90 + Math.floor(Math.random()*7)*10;
+  CFG.style.overlay = 30 + Math.floor(Math.random()*5)*10;
+  CFG.style.border = Math.random() > 0.6;
+
+  syncUI(); renderCard(); toast('✨ สุ่มดีไซน์ใหม่ให้เรียบร้อยแล้ว');
+}
+
+/* Brand / Preset */
+function saveBrand(){
+  BRAND = {
+    agent: val('b_agent'), phone: val('b_phone'), line: val('b_line'),
+    lat: MAPLAT, lng: MAPLNG, pinned: MAP_PINNED,
+    isDefault: document.getElementById('sw_brandDefault').classList.contains('on')
+  };
+  try{
+    localStorage.setItem(LS.brand, JSON.stringify(BRAND));
+  }catch(_){}
+  syncUI(); renderCard(); brandStatus(); toast('บันทึกข้อมูลติดต่อเรียบร้อย');
+}
+function clearBrand(){
+  BRAND=null; QRCODE=null; MAPLAT=13.736717; MAPLNG=100.523186; MAP_PINNED=false;
+  try{ localStorage.removeItem(LS.brand); localStorage.removeItem('fastpost_qr'); localStorage.removeItem('fastpost_pay_qr'); }catch(_){}
+  ['b_agent','b_phone','b_line'].forEach(i=>set(i,''));
+  document.getElementById('qrPrev').innerHTML='';
+  if(MAPOBJ && MARKEROBJ){ MARKEROBJ.setLatLng([MAPLAT, MAPLNG]); MAPOBJ.setView([MAPLAT, MAPLNG], MAPZOOM); }
+  updateMapQRBase64();
+  renderCard(); brandStatus(); toast('ล้างข้อมูลติดต่อแล้ว');
+}
+function brandStatus(){
+  const el = document.getElementById('brandStatus'), b = BRAND;
+  if(!b){ el.innerHTML = '<div><i style="color:var(--er)">✕</i><span>ยังไม่ได้บันทึกข้อมูลติดต่อ</span></div>'; return; }
+  const labels = {agent:'ผู้ติดต่อ', phone:'เบอร์โทร', line:'ไลน์ไอดี'};
+  const f = k => b[k] ? `<div><i>✓</i><span>${labels[k]||k}: ${esc(b[k])}</span></div>` : `<div><i style="color:#CBD0D6">—</i><span>${labels[k]||k}: ยังไม่ระบุ</span></div>`;
+  el.innerHTML = ['agent','phone','line'].map(f).join('')
+    + `<div><i>${QRCODE?'✓':'—'}</i><span>คิวอาร์โค้ดไลน์: ${QRCODE?'อัปโหลดแล้ว':'ยังไม่มี'}</span></div>`
+    + `<div><i>${MAP_PINNED?'✓':'—'}</i><span>พิกัดแผนที่ QR: ${MAP_PINNED?MAPLAT.toFixed(4)+', '+MAPLNG.toFixed(4):'ยังไม่ได้ปักหมุด'}</span></div>`;
+}
+function savePreset(){
+  const name = val('pr_name').trim() || ('แบบที่ '+(PRESETS.length+1));
+  PRESETS.push({id:'p'+Date.now(), name, cfg:JSON.parse(JSON.stringify(CFG)), def:PRESETS.length===0});
+  try{ localStorage.setItem(LS.presets, JSON.stringify(PRESETS)); }catch(_){}
+  set('pr_name',''); drawPresets(); toast('บันทึกแบบ: '+name);
+}
+function applyPreset(id){
+  const p = PRESETS.find(x=>x.id===id); if(!p) return;
+  CFG = migrate(JSON.parse(JSON.stringify(p.cfg)));
+  syncUI(); renderCard();
+  goPage('editor', document.querySelector('[data-page=editor]')); toast('ใช้งานแบบ: '+p.name);
+}
+async function presetAct(id, act){
+  let i = PRESETS.findIndex(x=>x.id===id); if(i<0) return;
+  if(act==='del'){
+    const ok = await uiConfirm('ลบ "' + PRESETS[i].name + '" ถาวร ย้อนกลับไม่ได้', {title:'ลบแบบที่บันทึก?', ok:'ลบ', danger:true});
+    if(!ok) return;
+    i = PRESETS.findIndex(x=>x.id===id); if(i<0) return;
+    PRESETS.splice(i,1);
+  }
+  if(act==='dup'){ const c=JSON.parse(JSON.stringify(PRESETS[i])); c.id='p'+Date.now(); c.name+=' (สำเนา)'; c.def=false; PRESETS.push(c); }
+  if(act==='ren'){
+    const n = await uiPrompt('ตั้งชื่อแบบนี้ให้จำง่าย', {title:'เปลี่ยนชื่อแบบ', value:PRESETS[i].name, ok:'บันทึกชื่อ'});
+    i = PRESETS.findIndex(x=>x.id===id); if(i<0) return;
+    if(n) PRESETS[i].name = n; else return;
+  }
+  if(act==='def'){ PRESETS.forEach(x=>x.def=false); PRESETS[i].def=true; }
+  try{ localStorage.setItem(LS.presets, JSON.stringify(PRESETS)); }catch(_){}
+  drawPresets();
+}
+function drawPresets(){
+  const el = document.getElementById('presetList');
+  if(!PRESETS.length) el.innerHTML = '<div class="qa" style="color:var(--mu);text-align:center;padding:20px">ยังไม่มีแบบที่บันทึกไว้ — แต่งการ์ดที่หน้าสร้างการ์ด แล้วกดบันทึกเก็บไว้ได้เลย</div>';
+  else el.innerHTML = PRESETS.map(p=>{
+    const t = DS.templates[p.cfg.templateId];
+    return `<div class="pitem ${p.def?'def':''}"><div style="min-width:0">
+      <b>${esc(p.name)}${p.def?' · ค่าเริ่มต้น':''}</b>
+      <small>${t?t.name:'—'} · ${DS.layouts[p.cfg.layout]?DS.layouts[p.cfg.layout].name.split(' (')[0]:'—'} · ${DS.palettes[p.cfg.palette]?DS.palettes[p.cfg.palette].name:'—'} · ${DS.sizes[p.cfg.size]?DS.sizes[p.cfg.size].name.split(' ')[0]:'—'}</small></div>
+      <div class="pact">
+        <button title="ใช้แบบนี้" onclick="applyPreset('${p.id}')">▸</button>
+        <button title="ตั้งเป็นค่าเริ่มต้น" onclick="presetAct('${p.id}','def')">★</button>
+        <button title="เปลี่ยนชื่อ" onclick="presetAct('${p.id}','ren')">✎</button>
+        <button title="ทำสำเนา" onclick="presetAct('${p.id}','dup')">⧉</button>
+        <button title="ลบ" onclick="presetAct('${p.id}','del')">✕</button>
+      </div></div>`;
+  }).join('');
+}
+
+/* Map Picker Init (Google Maps Hybrid Tile) */
+function initMapPicker(){
+  if(MAPOBJ) return;
+  setTimeout(()=>{
+    MAPOBJ = L.map('mapPicker').setView([MAPLAT, MAPLNG], MAPZOOM);
+    L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}', {
+      maxZoom: 19,
+      attribution: 'Tiles &copy; Esri'
+    }).addTo(MAPOBJ);
+    L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/Reference/World_Boundaries_and_Places/MapServer/tile/{z}/{y}/{x}', {
+      maxZoom: 19
+    }).addTo(MAPOBJ);
+    MARKEROBJ = L.marker([MAPLAT, MAPLNG], {draggable: true}).addTo(MAPOBJ);
+    
+    MARKEROBJ.on('dragend', function(){
+      const pos = MARKEROBJ.getLatLng();
+      MAPLAT = pos.lat; MAPLNG = pos.lng; MAP_PINNED = true;
+      updateMapQRBase64();
+      renderCard();
+    });
+    MAPOBJ.on('click', function(e){
+      MAPLAT = e.latlng.lat; MAPLNG = e.latlng.lng; MAP_PINNED = true;
+      MARKEROBJ.setLatLng([MAPLAT, MAPLNG]);
+      updateMapQRBase64();
+      renderCard();
+    });
+  }, 200);
+}
+
+function locateUser(){
+  if(navigator.geolocation){
+    navigator.geolocation.getCurrentPosition(pos => {
+      MAPLAT = pos.coords.latitude;
+      MAPLNG = pos.coords.longitude; MAP_PINNED = true;
+      if(MAPOBJ && MARKEROBJ){
+        MAPOBJ.setView([MAPLAT, MAPLNG], 16);
+        MARKEROBJ.setLatLng([MAPLAT, MAPLNG]);
+      }
+      updateMapQRBase64();
+      renderCard();
+      toast('📍 อัปเดตตำแหน่งของคุณเรียบร้อย');
+    }, () => {
+      toast('ไม่สามารถเข้าถึงตำแหน่งของคุณได้');
+    });
+  } else {
+    toast('เบราว์เซอร์ไม่รองรับการระบุตำแหน่ง');
+  }
+}
+
+function searchMapLocation(){
+  const q = val('mapSearchBox').trim();
+  if(!q) return;
+  fetch(`https://nominatim.openstreetmap.org/search?format=json&q=${encodeURIComponent(q)}`)
+    .then(res => res.json())
+    .then(data => {
+      if(data && data.length > 0){
+        MAPLAT = parseFloat(data[0].lat);
+        MAPLNG = parseFloat(data[0].lon); MAP_PINNED = true;
+        if(MAPOBJ && MARKEROBJ){
+          MAPOBJ.setView([MAPLAT, MAPLNG], 15);
+          MARKEROBJ.setLatLng([MAPLAT, MAPLNG]);
+        }
+        updateMapQRBase64();
+        renderCard();
+        toast('ปักหมุดสำเร็จ: '+data[0].display_name.substring(0,30));
+      } else { toast('ไม่พบสถานที่ดังกล่าว'); }
+    }).catch(()=>toast('เกิดข้อผิดพลาดในการค้นหา'));
+}
+
+/* UI */
+function goPage(id, btn){
+  window.scrollTo(0,0);
+  document.querySelectorAll('.page').forEach(p=>p.classList.remove('on'));
+  document.getElementById('p_'+id).classList.add('on');
+  document.querySelectorAll('.tab').forEach(t=>t.classList.remove('on'));
+  if(btn) btn.classList.add('on');
+  document.querySelectorAll('.tab,.bn').forEach(t=>t.classList.toggle('on', t.dataset.page===id));
+  if(id==='preset') drawPresets();
+  if(id==='donate') drawDonateQr();
+  if(id==='brand'){
+    brandStatus();
+    initMapPicker();
+    setTimeout(()=> { if(MAPOBJ) MAPOBJ.invalidateSize(); }, 200);
+  }
+  if(id==='editor') setTimeout(()=>{ fitStage(); renderCard(); },30);
+}
+function buildUI(){
+  document.getElementById('tplChips').innerHTML = Object.entries(DS.templates).map(([k,t]) =>
+    `<div class="chip" data-tpl="${k}" onclick="pickTemplate('${k}')">${t.name}</div>`).join('');
+  document.getElementById('palChips').innerHTML = Object.entries(DS.palettes).map(([k,p]) =>
+    `<div class="chip" data-pal="${k}" onclick="pickPalette('${k}')">${p.name}</div>`).join('');
+  fill('in_layout', DS.layouts, v=>v.name);
+  fill('in_size', DS.sizes, v=>v.name);
+  fill('in_font', DS.fonts, v=>v.name);
+  document.getElementById('alignChips').innerHTML = DS.aligns.map(a=>`<div class="chip" data-al="${a.k}" onclick="setStyle('align','${a.k}')">${a.n}</div>`).join('');
+}
+function fill(id, obj, f){ document.getElementById(id).innerHTML = Object.entries(obj).map(([k,v])=>`<option value="${k}">${f(v)}</option>`).join(''); }
+function mapOn(){ return !(CFG && CFG.style && CFG.style.showMap === false); }
+function toggleMap(){ CFG.style.showMap = !mapOn(); syncUI(); renderCard(); toast(mapOn() ? 'แสดงแผนที่ QR บนการ์ด' : 'ซ่อนแผนที่ QR แล้ว'); }
+function pickTemplate(id){
+  const keep = {size:CFG.size, useBrand:CFG.useBrand, showMap:mapOn()};
+  CFG = defaultCfg(id); CFG.size=keep.size; CFG.useBrand=keep.useBrand; CFG.style.showMap=keep.showMap;
+  syncUI(); renderCard();
+}
+function pickPalette(k){ CFG.palette=k; CFG.custom={}; syncUI(); renderCard(); }
+function setStyle(k,v){ CFG.style[k]=v; syncUI(); renderCard(); }
+function resetColors(){ CFG.custom={}; syncUI(); renderCard(); }
+function set(id,v){ const e=document.getElementById(id); if(e) e.value=v; }
+function syncUI(){
+  buildUI();
+  document.querySelectorAll('[data-tpl]').forEach(e=>e.classList.toggle('on', e.dataset.tpl===CFG.templateId));
+  document.querySelectorAll('[data-pal]').forEach(e=>e.classList.toggle('on', e.dataset.pal===CFG.palette));
+  document.querySelectorAll('[data-al]').forEach(e=>e.classList.toggle('on', e.dataset.al===CFG.style.align));
+  set('in_layout',CFG.layout); set('in_size',CFG.size); set('in_font',CFG.font);
+  const p = palOf();
+  set('c_primary',p.primary); set('c_accent',p.accent); set('c_bg',p.bg); set('c_text',p.text);
+  const s = CFG.style;
+  set('s_title',s.titleScale); set('s_price',s.priceScale); set('s_ov',s.overlay);
+  document.getElementById('lb_title').textContent  = s.titleScale+'%';
+  document.getElementById('lb_price').textContent  = s.priceScale+'%';
+  document.getElementById('lb_ov').textContent     = s.overlay+'%';
+  document.getElementById('sw_border').classList.toggle('on', !!s.border);
+  ['sw_showMap','sw_showMap2'].forEach(i => { const e=document.getElementById(i); if(e) e.classList.toggle('on', mapOn()); });
+}
+function bindInputs(){
+  ['d_type','d_title','d_price','d_loc','d_rai','d_ngan','d_wa','d_bed','d_bath','d_park','d_living','d_desc']
+    .forEach(id=>{ const e=document.getElementById(id); if(e){ e.addEventListener('input',renderCard); e.addEventListener('change',renderCard); } });
+  const lay = document.getElementById('in_layout'); if(lay) lay.onchange = e => { CFG.layout=e.target.value; renderCard(); };
+  const sz = document.getElementById('in_size'); if(sz) sz.onchange = e => { CFG.size=e.target.value; if(CFG.size==='s16x9') CFG.style.pad=28; renderCard(); };
+  const ft = document.getElementById('in_font'); if(ft) ft.onchange = async e => { CFG.font=e.target.value; await ensureFonts(); renderCard(); };
+  [['c_primary','primary'],['c_accent','accent'],['c_bg','bg'],['c_text','text']].forEach(([id,k])=>{
+    const el = document.getElementById(id);
+    if(el) el.oninput = e => { CFG.custom[k]=e.target.value; if(k==='accent') CFG.custom.price=e.target.value; renderCard(); }; });
+  [['s_title','titleScale'],['s_price','priceScale'],['s_ov','overlay']].forEach(([id,k])=>{
+    const el = document.getElementById(id);
+    if(el) el.oninput = e => { CFG.style[k]=+e.target.value; syncUI(); renderCard(); }; });
+  const swB = document.getElementById('sw_border'); if(swB) swB.onclick = e => { CFG.style.border=!CFG.style.border; e.currentTarget.classList.toggle('on'); renderCard(); };
+  ['sw_showMap','sw_showMap2'].forEach(i => { const e=document.getElementById(i); if(e) e.onclick = toggleMap; });
+  const swBD = document.getElementById('sw_brandDefault'); if(swBD) swBD.onclick = e => { e.currentTarget.classList.toggle('on'); toast('กด "บันทึกข้อมูลติดต่อ" เพื่อยืนยันการตั้งค่า'); };
+  
+  const pic = document.getElementById('pic');
+  if(pic) pic.onchange = e => {
+    [...e.target.files].slice(0, 4-IMGS.length).forEach(f => readResize(f, 1200, url => { IMGS.push(url); drawThumbs(); renderCard(); }));
+    e.target.value=''; };
+  const qrIn = document.getElementById('qrIn');
+  if(qrIn) qrIn.onchange = async e => {
+    const f = e.target.files[0]; if(!f) return;
+    readResize(f, 420, async url => { QRCODE = await toBase64(url); try{localStorage.setItem('fastpost_qr',QRCODE);}catch(_){}
+      document.getElementById('qrPrev').innerHTML = `<div style="width:70px;height:70px;background:#fff url('${QRCODE}') center/contain no-repeat;border:1px solid var(--bd);border-radius:6px"></div>`;
+      renderCard(); brandStatus(); }, true);
+    e.target.value=''; };
+}
+function readResize(file, max, cb, keepAlpha){
+  const r = new FileReader();
+  r.onload = x => { const im = new Image(); im.onload = () => {
+    const sc = Math.min(1, max/Math.max(im.width, im.height));
+    const c = document.createElement('canvas'); c.width=Math.round(im.width*sc); c.height=Math.round(im.height*sc);
+    c.getContext('2d').drawImage(im,0,0,c.width,c.height);
+    cb(keepAlpha ? c.toDataURL('image/png') : c.toDataURL('image/jpeg', 0.88));
+  }; im.src = x.target.result; };
+  r.readAsDataURL(file);
+}
+function drawThumbs(){
+  const el = document.getElementById('thumbs');
+  if(!el) return;
+  const nImg = IMGS.filter(Boolean).length, cnt = document.getElementById('ptabImgN');
+  if(cnt) cnt.textContent = nImg ? ' ('+nImg+'/4)' : '';
+  el.innerHTML = [0,1,2,3].map(i =>
+    IMGS[i] ? `<div style="background-image:url(${IMGS[i]})"><b onclick="rmImg(${i})">✕</b></div>`
+            : `<div style="display:grid;place-items:center;color:var(--mu);font-size:10px">${i+1}</div>`).join('');
+  try{ localStorage.setItem(LS.imgs, JSON.stringify(IMGS)); }catch(_){ toast('พื้นที่จัดเก็บเต็ม — รูปจะไม่ถูกจำหลังรีเฟรช (ยังดาวน์โหลดได้ตามปกติ)'); }
+}
+function rmImg(i){ IMGS.splice(i,1); IMG_POS.splice(i,1); IMG_POS.push({x:50,y:50}); drawThumbs(); renderCard(); }
+function saveAll(){ if(SAMPLE_MODE) return; try{ localStorage.setItem(LS.cfg, JSON.stringify(CFG)); localStorage.setItem(LS.data, JSON.stringify(getData(true))); }catch(_){} }
+function toast(m){ const t=document.getElementById('toast'); if(!t) return; t.textContent=m; t.classList.add('on'); clearTimeout(t._); t._=setTimeout(()=>t.classList.remove('on'),2400); }
+
+function migrate(c){
+  if(!c || !DS.templates[c.templateId]) return defaultCfg('modern-01');
+  if(!c.style) c.style = Object.assign({}, DS.templates[c.templateId].style);
+  if(!c.custom) c.custom = {};
+  if(!DS.sizes[c.size]) c.size = 's4x5';
+  if(!DS.layouts[c.layout]) c.layout = DS.templates[c.templateId].layout;
+  if(!DS.palettes[c.palette]) c.palette = DS.templates[c.templateId].palette;
+  if(!DS.fonts[c.font]) c.font = DS.fonts[c.font] ? c.font : 'prompt_sarabun';
+  return c;
+}
+
+/* ===== สนับสนุน (โดเนท) ===== */
+let DON_AMT = 50;
+function donateAmount(){
+  if(DON_AMT === 'other') return parseInt(String(val('donCustom')).replace(/[^\d]/g,''),10) || 0;
+  return DON_AMT;
+}
+function pickDonate(a){
+  DON_AMT = a;
+  document.querySelectorAll('#donChips .chip').forEach(c=>{
+    const on = (c.dataset.amt === 'other') ? a === 'other' : +c.dataset.amt === a;
+    c.classList.toggle('on', on); c.setAttribute('aria-pressed', on);
+  });
+  const w = document.getElementById('donCustomWrap'); w.hidden = (a !== 'other');
+  if(a === 'other') document.getElementById('donCustom').focus();
+  drawDonateQr();
+}
+function drawDonateQr(){
+  const img = document.getElementById('donQrImg'); if(!img) return;
+  const frame = document.getElementById('donQrFrame'), err = document.getElementById('donQrError');
+  const lbl = document.getElementById('donLabel'), nm = document.getElementById('donPayee');
+  const amt = Math.min(donateAmount(), 1000000);
+  let src = '';
+  try{
+    if(PROMPTPAY_ID && typeof qrcode === 'function') src = makeQrDataUrl(promptPayPayload(PROMPTPAY_ID, amt > 0 ? amt : 0));
+    else if(PAY_QR_SRC) src = PAY_QR_SRC;
+  }catch(e){ console.error(e); }
+  if(src){ img.src = src; frame.hidden = false; err.hidden = true; }
+  else { img.removeAttribute('src'); frame.hidden = true; err.hidden = false; }
+  lbl.textContent = amt > 0 ? 'สแกนเพื่อสนับสนุน ' + amt.toLocaleString('th-TH') + ' บาท' : 'สแกนแล้วระบุจำนวนเงินเองในแอปธนาคาร';
+  nm.textContent = PAYEE_NAME ? 'ชื่อบัญชี: ' + PAYEE_NAME : '';
+  const note = document.getElementById('donNote'); if(note) note.textContent = DONATE_NOTE;
+}
+
+/* ===== Editor v2: แท็บ, ฟอร์มตามประเภท, ราคา, พรีวิวเต็มจอ ===== */
+const PHOTO_TIPS = {
+  land:  ['หน้าแปลง & ป้ายขาย เห็นถนนหน้าที่ดิน','มุมกว้างรอบแปลง เห็นขอบเขต/การถม','บรรยากาศรอบข้าง วิว เพื่อนบ้าน','ทางเข้าออก หรือภาพโฉนด/ผังแปลง'],
+  house: ['หน้าบ้าน/หน้าอาคารทั้งหลัง เห็นถนนหน้าทรัพย์','ห้องหลักที่สว่างและกว้างที่สุด','ห้องครัว ห้องน้ำ หรือชั้นอื่น ๆ','บรรยากาศรอบทรัพย์ หรือส่วนกลาง'],
+  condo: ['ภาพภายนอกอาคาร','ห้องนั่งเล่นพร้อมวิวจากห้อง','ห้องนอนและห้องน้ำ','ส่วนกลาง เช่น สระว่ายน้ำ ฟิตเนส']
+};
+function openPane(name){
+  document.querySelectorAll('.ptab').forEach(t=>{
+    const on = t.dataset.pane === name;
+    t.classList.toggle('on', on); t.setAttribute('aria-selected', on); t.tabIndex = on ? 0 : -1;
+  });
+  document.querySelectorAll('.pane').forEach(p=>p.classList.toggle('on', p.id === 'pane_'+name));
+  const panel = document.querySelector('.col.panel');
+  if(panel && panel.getBoundingClientRect().top < 0) panel.scrollIntoView({block:'start', behavior:'smooth'});
+}
+function updateTypeFields(){
+  const t = val('d_type');
+  document.getElementById('grp_land').hidden  = !showsLand(t);
+  document.getElementById('grp_house').hidden = !showsHouse(t);
+  document.getElementById('lb_living').textContent = (t === 'ขายคอนโด') ? 'ขนาดห้อง (ตร.ม.)' : 'พื้นที่ใช้สอย (ตร.ม.)';
+  const g = (t === 'ขายที่ดิน') ? 'land' : (t === 'ขายคอนโด') ? 'condo' : 'house';
+  document.getElementById('tipList').innerHTML = PHOTO_TIPS[g].map((x,i)=>`<li>รูป ${i+1} — ${x}</li>`).join('');
+}
+function showPriceHint(){
+  const h = document.getElementById('priceHint'); if(!h) return;
+  const n = priceVal();
+  h.textContent = n >= 1e6 ? '≈ '+(+(n/1e6).toFixed(2))+' ล้านบาท' : n >= 1e5 ? '≈ '+(+(n/1e5).toFixed(1))+' แสนบาท' : '';
+}
+function fmtPrice(){
+  const el = document.getElementById('d_price'); if(!el) return;
+  let v = String(el.value).trim();
+  if(/^\d+(\.\d+)?$/.test(v)) v = String(Math.round(+v));            // ค่าเก่าที่บันทึกเป็นตัวเลขล้วน
+  const digits = v.replace(/[^\d]/g,'').slice(0,12);
+  el.value = digits ? Number(digits).toLocaleString('en-US') : '';
+  showPriceHint();
+}
+function onPriceInput(e){
+  const el = e.target, pos = (el.selectionStart == null) ? el.value.length : el.selectionStart;
+  const before = el.value.slice(0,pos).replace(/[^\d]/g,'').length;     // จำตำแหน่งเคอร์เซอร์ตามจำนวนหลัก
+  const digits = el.value.replace(/[^\d]/g,'').slice(0,12);
+  el.value = digits ? Number(digits).toLocaleString('en-US') : '';
+  let n = 0, i = 0;
+  while(i < el.value.length && n < before){ if(/\d/.test(el.value[i])) n++; i++; }
+  try{ el.setSelectionRange(i,i); }catch(_){}
+  showPriceHint();
+}
+let CLR_T = null;
+function resetClearBtn(btn){ delete btn.dataset.armed; btn.textContent = 'ล้างทุกช่อง'; btn.classList.remove('warn'); }
+function clearSample(btn){
+  if(!btn.dataset.armed){                                              // แตะครั้งแรก: ขอให้ยืนยัน (ไม่ใช้ confirm())
+    btn.dataset.armed = '1'; btn.textContent = 'แตะอีกครั้งเพื่อล้าง'; btn.classList.add('warn');
+    clearTimeout(CLR_T); CLR_T = setTimeout(()=>resetClearBtn(btn), 3000); return;
+  }
+  clearTimeout(CLR_T); resetClearBtn(btn);
+  ['d_title','d_price','d_loc','d_desc','d_rai','d_ngan','d_wa','d_bed','d_bath','d_park','d_living'].forEach(id=>set(id,''));
+  showPriceHint(); renderCard();
+  toast('ล้างข้อมูลแล้ว — กรอกข้อมูลทรัพย์ของคุณได้เลย');
+  const t = document.getElementById('d_title'); if(t) t.focus();
+}
+function openPreviewFull(){
+  const src = document.getElementById('stage'); if(!src) return;
+  const sz = DS.sizes[CFG.size] || DS.sizes['s4x5'];
+  const s = Math.min((window.innerWidth-24)/sz.w, (window.innerHeight-90)/sz.h, 1);
+  const box = document.getElementById('pvFullBox'); box.innerHTML = '';
+  const c = src.cloneNode(true);
+  c.removeAttribute('id'); c.querySelectorAll('[id]').forEach(e=>e.removeAttribute('id'));
+  c.querySelectorAll('.draggable-img').forEach(e=>{ e.classList.remove('draggable-img'); e.style.cursor = 'default'; });
+  c.style.transformOrigin = 'top left'; c.style.transform = `scale(${s})`;
+  box.style.width = (sz.w*s)+'px'; box.style.height = (sz.h*s)+'px';
+  box.appendChild(c);
+  document.getElementById('pvFull').classList.add('on');
+  document.getElementById('pvFullClose').focus();
+}
+function closePreviewFull(){
+  const o = document.getElementById('pvFull'); if(!o || !o.classList.contains('on')) return;
+  o.classList.remove('on'); document.getElementById('pvFullBox').innerHTML = '';
+}
+function initEditorUI(){
+  document.querySelectorAll('.ptab').forEach(t=>t.addEventListener('click', ()=>openPane(t.dataset.pane)));
+  document.querySelector('.ptabs').addEventListener('keydown', e=>{
+    if(e.key !== 'ArrowRight' && e.key !== 'ArrowLeft') return;
+    const tabs = [...document.querySelectorAll('.ptab')], i = tabs.findIndex(t=>t.classList.contains('on'));
+    const nx = tabs[(i + (e.key === 'ArrowRight' ? 1 : -1) + tabs.length) % tabs.length];
+    openPane(nx.dataset.pane); nx.focus(); e.preventDefault();
+  });
+  document.getElementById('d_price').addEventListener('input', onPriceInput);
+  fmtPrice();
+  document.getElementById('d_type').addEventListener('change', updateTypeFields);
+  updateTypeFields();
+  document.getElementById('pane_data').addEventListener('focusin', e=>{      // แตะช่องตัวเลข → เลือกค่าเดิมไว้ พิมพ์ทับได้เลย
+    const el = e.target;
+    if(el.matches && el.matches('input[type=number]')){
+      el.addEventListener('mouseup', ev=>ev.preventDefault(), {once:true});
+      setTimeout(()=>{ try{ el.select(); }catch(_){} }, 0);
+    }
+  });
+  document.getElementById('capText').addEventListener('input', updateLineLink);
+  document.getElementById('dropPic').addEventListener('keydown', e=>{
+    if(e.key === 'Enter' || e.key === ' '){ e.preventDefault(); document.getElementById('pic').click(); }
+  });
+  document.addEventListener('keydown', e=>{ if(e.key === 'Escape') closePreviewFull(); });
+  if('ResizeObserver' in window){ const mid = document.querySelector('.col.mid'); if(mid) new ResizeObserver(syncPvh).observe(mid); }
+}
+
+/* ===== การ์ดตัวอย่างหน้าแรก: เรนเดอร์ด้วยเอนจินจริงของระบบ + ภาพวาดตัวอย่าง ===== */
+function sceneSvg(kind, v){
+  v = v % 4;
+  const W = 1200, H = 900;
+  const sk = [['#8FCBF2','#EAF6FF'],['#F7B779','#FFE9CC'],['#A7B8F2','#EEF1FF'],['#9ADBC0','#F0FBF5']][v];
+  const sx = [210,930,600,1000][v], sy = [150,210,130,170][v];
+  let g = `<defs><linearGradient id="s" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="${sk[0]}"/><stop offset="1" stop-color="${sk[1]}"/></linearGradient></defs>`
+    + `<rect width="${W}" height="${H}" fill="url(#s)"/><circle cx="${sx}" cy="${sy}" r="70" fill="#FFF6D6" opacity=".9"/>`
+    + `<ellipse cx="${(sx+520)%1100+60}" cy="${sy+50}" rx="140" ry="34" fill="#fff" opacity=".7"/><ellipse cx="${(sx+640)%1100+60}" cy="${sy+70}" rx="90" ry="26" fill="#fff" opacity=".6"/>`;
+  const tree = (x, y, r) => `<rect x="${x-8}" y="${y}" width="16" height="${r*0.9}" fill="#6B4F3A"/><circle cx="${x}" cy="${y}" r="${r}" fill="#3F8F4A"/><circle cx="${x-r*0.5}" cy="${y+r*0.3}" r="${r*0.7}" fill="#4BA057"/>`;
+  if(kind === 'land'){
+    const gc = [['#7DB76B','#5FA04F','#4C8E40'],['#B9AA62','#948B47','#7C7A3B'],['#79AE86','#5C9770','#4A8560'],['#9CC66B','#6FA043','#5C8F36']][v];
+    g += `<path d="M0 520 Q300 400 620 500 T1200 470 V900 H0Z" fill="${gc[0]}"/><path d="M0 610 Q400 510 800 600 T1200 570 V900 H0Z" fill="${gc[1]}"/><rect y="720" width="${W}" height="180" fill="${gc[2]}"/>`
+       + `<polygon points="440,900 760,900 650,640 590,640" fill="#9AA0A6"/><polygon points="595,900 605,900 622,700 618,700" fill="#fff" opacity=".8"/>`
+       + `<rect x="${150+v*40}" y="560" width="14" height="190" fill="#6B4F3A"/><rect x="${360+v*40}" y="560" width="14" height="190" fill="#6B4F3A"/>`
+       + `<rect x="${130+v*40}" y="470" width="260" height="140" rx="8" fill="#fff" stroke="#C0392B" stroke-width="8"/><rect x="${165+v*40}" y="505" width="190" height="18" fill="#C0392B"/><rect x="${165+v*40}" y="545" width="130" height="12" fill="#C0392B" opacity=".6"/>`
+       + tree(980, 560, 60) + tree(1080, 590, 46);
+  } else if(kind === 'house'){
+    const body = ['#F3E3CF','#E9EEF4','#F6D9D2','#E5EFE0'][v], roof = ['#7A4B3A','#3F4A5A','#8B3A3A','#4A5D4A'][v];
+    g += `<rect y="660" width="${W}" height="240" fill="#6DAE5B"/><polygon points="500,900 700,900 640,700 560,700" fill="#E3D9C6"/>`
+       + `<rect x="300" y="400" width="600" height="320" fill="${body}"/><polygon points="250,410 600,220 950,410" fill="${roof}"/><rect x="770" y="270" width="50" height="100" fill="${roof}"/>`
+       + `<rect x="560" y="560" width="80" height="160" rx="6" fill="#5B3E2B"/>`
+       + [[350,450],[460,450],[700,450],[800,450],[350,590],[800,590]].map(([x,y])=>`<rect x="${x}" y="${y}" width="70" height="90" rx="4" fill="#BFE3F7" stroke="#fff" stroke-width="6"/>`).join('')
+       + tree(170+v*30, 560, 90) + tree(1060-v*30, 600, 70);
+  } else if(kind === 'condo'){
+    g += `<rect y="760" width="${W}" height="140" fill="#7FA582"/>`;
+    const tower = (x, w, h, c) => { let o = `<rect x="${x}" y="${760-h}" width="${w}" height="${h}" fill="${c}"/>`;
+      for(let r=0; r<Math.floor(h/56); r++) for(let k=0; k<Math.floor(w/48); k++){
+        const lit = ((r*7 + k*3 + v) % 5) === 0;
+        o += `<rect x="${x+14+k*48}" y="${760-h+18+r*56}" width="28" height="34" fill="${lit ? '#FFE9A8' : '#BFD8EA'}" opacity=".95"/>`; }
+      return o; };
+    g += tower(150+v*20, 260, 520+v*30, '#C9D3DC') + tower(470, 300, 640-v*20, '#A9B8C6') + tower(830, 240, 460+v*40, '#D5DCE3')
+       + tree(120, 770, 50) + tree(1120, 770, 54) + tree(790, 790, 40);
+  } else { // town
+    const cols = [['#F2E2C9','#E9C9B8','#DCE6EE'],['#E8EDF3','#F4DDD2','#DDE9DD'],['#F6D9D2','#E3E8F2','#F2E8C9'],['#E5EFE0','#F0DED0','#E0E6F0']][v];
+    g += `<rect y="700" width="${W}" height="200" fill="#8E949B"/><rect y="700" width="${W}" height="16" fill="#C9CDD2"/>`;
+    cols.forEach((c, i) => { const x = 150 + i*300;
+      g += `<rect x="${x}" y="260" width="300" height="440" fill="${c}" stroke="#fff" stroke-width="4"/><rect x="${x}" y="240" width="300" height="30" fill="#6C7580"/>`
+        + [330, 470].map(y => `<rect x="${x+50}" y="${y}" width="80" height="90" rx="4" fill="#BFE3F7" stroke="#fff" stroke-width="6"/><rect x="${x+170}" y="${y}" width="80" height="90" rx="4" fill="#BFE3F7" stroke="#fff" stroke-width="6"/>`).join('')
+        + `<rect x="${x+110}" y="590" width="80" height="110" rx="5" fill="#5B3E2B"/>`; });
+    g += tree(90, 600, 60) + tree(1110, 610, 56);
+  }
+  return 'data:image/svg+xml;charset=utf-8,' + encodeURIComponent(`<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ${W} ${H}" preserveAspectRatio="xMidYMid slice">${g}</svg>`);
+}
+function samplePhoto(kind, i){
+  const own = (SAMPLE_PHOTOS[kind] || []).filter(Boolean);
+  return own.length ? own[i % own.length] : sceneSvg(kind, i);
+}
+const SAMPLES = [
+  {tpl:'bold-01',    kind:'land',  d:{type:'ขายที่ดิน',  title:'ที่ดินแปลงสวย ติดถนนคอนกรีต', price:890000,  loc:'ต.บางปะอิน อ.บางปะอิน จ.พระนครศรีอยุธยา', rai:0, ngan:2, wa:50, bed:0, bath:0, park:0, living:0,   desc:'ถมแล้ว น้ำไฟพร้อม เดินทางสะดวก เหมาะปลูกบ้านหรือลงทุน'}},
+  {tpl:'luxury-01',  kind:'house', d:{type:'ขายบ้าน',    title:'บ้านเดี่ยว 2 ชั้น หลังมุม',     price:4590000, loc:'ถ.ลาดพร้าว กรุงเทพฯ',                       rai:0, ngan:0, wa:52, bed:4, bath:3, park:2, living:220, desc:'รีโนเวทใหม่ พร้อมเข้าอยู่ ใกล้รถไฟฟ้า'}},
+  {tpl:'elegant-01', kind:'condo', d:{type:'ขายคอนโด',   title:'คอนโดใกล้ BTS วิวเมือง',        price:2450000, loc:'ติด BTS อ่อนนุช กรุงเทพฯ',                  rai:0, ngan:0, wa:0,  bed:1, bath:1, park:1, living:35,  desc:'ชั้น 18 ห้องมุม ตกแต่งครบ'}},
+  {tpl:'gridpro-01', kind:'town',  d:{type:'ให้เช่า',    title:'ทาวน์โฮม 3 ชั้น ให้เช่า',       price:18000,   loc:'ซ.รามอินทรา กรุงเทพฯ',                      rai:0, ngan:0, wa:20, bed:3, bath:3, park:1, living:180, desc:'ใกล้ห้างและทางด่วน เลี้ยงสัตว์เล็กได้'}}
+];
+const SAMPLE_BRAND = {agent:'คุณสมชาย (ตัวอย่าง)', phone:'08X-XXX-XXXX', line:'@fastpost'};
+function buildSampleSlots(){
+  const row = document.getElementById('sampleRow'); if(!row) return;
+  row.innerHTML = SAMPLES.map((sm,i)=>{
+    const nm = DS.templates[sm.tpl].name.replace(/^[^\u0E00-\u0E7Fa-zA-Z0-9]+/, '').trim();
+    return `<div class="sample" role="button" tabindex="0" data-i="${i}" aria-label="ใช้แม่แบบ ${esc(nm)} (${esc(sm.d.type)})">`
+      + `<span class="sample-frame"><span class="sample-inner"></span></span>`
+      + `<span class="sample-cap">${esc(sm.d.type)}<small>แม่แบบ ${esc(nm)}</small></span></div>`;
+  }).join('');
+  row.addEventListener('click', e=>{ const el = e.target.closest('.sample'); if(el) useSample(+el.dataset.i); });
+  row.addEventListener('keydown', e=>{ if(e.key==='Enter' || e.key===' '){ const el = e.target.closest('.sample'); if(el){ e.preventDefault(); useSample(+el.dataset.i); } } });
+  if('ResizeObserver' in window) new ResizeObserver(scaleSamples).observe(row);
+  const note = document.getElementById('sampleNote');
+  if(note && Object.values(SAMPLE_PHOTOS).some(a=>a && a.length)) note.hidden = true;
+}
+function scaleSamples(){
+  document.querySelectorAll('#sampleRow .sample-frame').forEach(fr=>{
+    const inner = fr.firstElementChild, w = fr.clientWidth; if(!inner || !w) return;
+    inner.style.transform = `scale(${w/1080})`;
+  });
+}
+async function renderSamples(){
+  const row = document.getElementById('sampleRow'); if(!row || !CFG || !row.children.length) return;
+  await Promise.all(SAMPLES.map(sm => ensureFonts(DS.templates[sm.tpl].font)));    // โหลดฟอนต์ให้ครบก่อน แล้วค่อยสลับสถานะแบบไม่มี await คั่น
+  const keep = {CFG, IMGS, IMG_POS, QRCODE}, out = [];
+  SAMPLE_MODE = true; BRAND_OVERRIDE = SAMPLE_BRAND; QRCODE = null;
+  try{
+    SAMPLES.forEach(sm=>{
+      CFG = defaultCfg(sm.tpl); CFG.style.showMap = false;
+      IMGS = [0,1,2,3].map(i => samplePhoto(sm.kind, i));
+      IMG_POS = [0,1,2,3].map(()=>({x:50,y:50}));
+      DATA_OVERRIDE = sm.d;
+      renderCard();
+      const c = document.getElementById('stage').cloneNode(true);
+      c.removeAttribute('id'); c.querySelectorAll('[id]').forEach(e=>e.removeAttribute('id'));
+      c.querySelectorAll('.draggable-img').forEach(e=>{ e.classList.remove('draggable-img'); e.style.cursor = 'default'; });
+      c.style.transform = 'none'; c.style.position = 'relative';
+      out.push(c);
+    });
+  } finally {
+    CFG = keep.CFG; IMGS = keep.IMGS; IMG_POS = keep.IMG_POS; QRCODE = keep.QRCODE;
+    SAMPLE_MODE = false; DATA_OVERRIDE = null; BRAND_OVERRIDE = null;
+    renderCard();                                                                  // คืนค่าการ์ดของผู้ใช้ทันที
+  }
+  [...row.querySelectorAll('.sample-inner')].forEach((inner,i)=>{
+    inner.innerHTML = ''; inner.style.width = '1080px'; inner.style.height = '1350px'; inner.appendChild(out[i]);
+  });
+  scaleSamples();
+}
+function useSample(i){
+  const sm = SAMPLES[i]; if(!sm) return;
+  pickTemplate(sm.tpl);
+  goPage('editor', document.querySelector('[data-page=editor]'));
+  toast('ใช้แม่แบบนี้แล้ว — แก้ข้อมูลทรัพย์ของคุณได้เลย');
+}
+
+(async function init(){
+  buildUI();
+  try{
+    PRESETS = JSON.parse(localStorage.getItem(LS.presets)||'[]');
+    BRAND   = JSON.parse(localStorage.getItem(LS.brand)||'null');
+    QRCODE  = localStorage.getItem('fastpost_qr') || null;
+    IMG_POS = JSON.parse(localStorage.getItem(LS.imgPos)||'[[50,50],[50,50],[50,50],[50,50]]').map(p=>Array.isArray(p)?{x:p[0]??50,y:p[1]??50}:{x:p?.x??50,y:p?.y??50});
+    while(IMG_POS.length<4) IMG_POS.push({x:50,y:50});
+    SESSION = localStorage.getItem(LS.session)||null;
+    CURRENT_USER = SESSION ? (localStorage.getItem(LS.user)||null) : null;  // อาจเป็น null ได้ (ใช้รหัส Pro โดยไม่ล็อกอิน)
+    CURRENT_PLAN = 'free';
+    if(SESSION && localStorage.getItem(LS.plan)==='pro' && (+localStorage.getItem(LS.planExp)||0) > Date.now()) CURRENT_PLAN = 'pro';
+    updateAuthBtn();
+    if(BRAND){
+      if(BRAND.lat && BRAND.lng && BRAND.pinned){ MAPLAT = BRAND.lat; MAPLNG = BRAND.lng; MAP_PINNED = true; }
+    }
+    IMGS    = JSON.parse(localStorage.getItem(LS.imgs)||'[]');
+    const d = JSON.parse(localStorage.getItem(LS.data)||'null');
+    if(d) Object.entries({d_type:d.type,d_title:d.title,d_price:d.price,d_loc:d.loc,d_rai:d.rai,d_ngan:d.ngan,d_wa:d.wa,d_bed:d.bed,d_bath:d.bath,d_park:d.park,d_living:d.living,d_desc:d.desc}).forEach(([k,v])=>set(k,v));
+    const saved = JSON.parse(localStorage.getItem(LS.cfg)||'null');
+    const def = PRESETS.find(p=>p.def);
+    CFG = migrate(saved || (def ? JSON.parse(JSON.stringify(def.cfg)) : defaultCfg('modern-01')));
+  }catch(_){ CFG = defaultCfg('modern-01'); }
+
+  if(BRAND){
+    ['agent','phone','line'].forEach(k=>set('b_'+k, BRAND[k]||''));
+    const sDef = document.getElementById('sw_brandDefault'); if(sDef) sDef.classList.toggle('on', !!BRAND.isDefault);
+  }
+  if(QRCODE) {
+    const qPrev = document.getElementById('qrPrev');
+    if(qPrev) qPrev.innerHTML = `<div style="width:70px;height:70px;background:#fff url('${QRCODE}') center/contain no-repeat;border:1px solid var(--bd);border-radius:6px"></div>`;
+  }
+
+  bindInputs(); drawThumbs(); syncUI(); brandStatus(); drawPresets(); updateQuotaUI(); initEditorUI(); buildSampleSlots();
+  await updateMapQRBase64();
+  ensureFonts().then(renderCard).then(renderSamples);
+  fillLegal();
+  try{ localStorage.removeItem('fastpost_pay_qr'); }catch(_){}
+  refreshAccount();
+})();
+</script>
+</body>
+</html>
